@@ -407,7 +407,7 @@ body.cake-dark .petals{opacity:0}
   </svg>
 </button> -->
 <!-- GANTI src ini dengan file musik latar sungguhan (mp3) -->
-<audio id="bgMusic" src="music/theme.mp3" preload="none" loop></audio>
+<audio id="bgMusic" src="background-music.mp3" preload="none" loop></audio>
 
 <!-- flower-stem scroll progress -->
 <svg class="stem-progress" viewBox="0 0 30 100" preserveAspectRatio="none" aria-hidden="true">
@@ -809,6 +809,7 @@ document.body.classList.add("cake-dark");
     if (canVibe) navigator.vibrate([30,60,30]);
     room.classList.add("lit");
     document.body.classList.remove("cake-dark");
+    if (window.__enableSound) window.__enableSound();
     setTimeout(function(){ banner.classList.add("show"); banner.removeAttribute("aria-hidden"); }, 350);
     setTimeout(confetti, 300);
     setTimeout(rainHearts, 300);
@@ -816,7 +817,6 @@ document.body.classList.add("cake-dark");
   }
 
   stage.addEventListener("pointerdown", function(e){
-    if (window.__enableSound) window.__enableSound();
     startY = e.clientY;
     blowOne();
     holdTimer = setInterval(blowOne, 480);
@@ -976,7 +976,7 @@ new IntersectionObserver(function(es){
   var btn = document.getElementById("soundBtn");
   var audio = document.getElementById("bgMusic");
   var TARGET_VOL = 0.55;
-  var fadeTimer = null;
+  var fadeTimer = null, started = false;
 
   function fadeTo(target, ms){
     clearInterval(fadeTimer);
@@ -999,19 +999,22 @@ new IntersectionObserver(function(es){
   function stop(){
     fadeTo(0, 500);
   }
-  btn.addEventListener("click", function(){
-    var on = btn.getAttribute("aria-pressed") === "true";
-    btn.setAttribute("aria-pressed", String(!on));
-    btn.setAttribute("aria-label", on ? "Putar musik lembut" : "Hentikan musik");
-    if (on) stop(); else start();
-  });
-  // dipanggil oleh segel lilin — menyalakan toggle + musik dalam satu gesture
+  if (btn){
+    btn.addEventListener("click", function(){
+      var on = btn.getAttribute("aria-pressed") === "true";
+      btn.setAttribute("aria-pressed", String(!on));
+      btn.setAttribute("aria-label", on ? "Putar musik lembut" : "Hentikan musik");
+      if (on) stop(); else start();
+    });
+  }
+  // dipanggil setelah lilin ditiup habis — mulai musik latar dalam gesture yang sama
   window.__enableSound = function(){
-    if (btn.getAttribute("aria-pressed") !== "true"){
+    if (started) return; started = true;
+    if (btn){
       btn.setAttribute("aria-pressed","true");
       btn.setAttribute("aria-label","Hentikan musik");
-      try { start(); } catch(e) {}
     }
+    try { start(); } catch(e) {}
   };
 })();
 
