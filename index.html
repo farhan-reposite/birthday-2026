@@ -46,7 +46,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 button:focus-visible, .scratch-card:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-radius:8px}
 
 /* ============ LAYOUT ============ */
-.act{position:relative;max-width:560px;margin:0 auto;padding:104px 26px}
+.act{position:relative;max-width:560px;margin:0 auto;padding:40px 26px}
 .eyebrow{
   font-family:var(--sans);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
   color:var(--gold);font-weight:500;margin-bottom:14px;
@@ -265,8 +265,7 @@ body.cake-dark .petals{opacity:0}
   display:grid;place-items:center;color:var(--rose-deep);
   will-change:transform;overflow:hidden;
 }
-.frame-img svg{width:44px;height:44px;opacity:.7}
-.frame-img p{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;margin-top:8px;opacity:.7}
+.frame-img img{width:100%;height:100%;object-fit:cover;display:block}
 .caption{font-family:var(--hand);font-size:1.28rem;color:var(--ink);margin-top:12px;line-height:1.35}
 .caption .when{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
 
@@ -302,7 +301,7 @@ body.cake-dark .petals{opacity:0}
   z-index:1;
 }
 .env-front{
-  inset:0;top:32%;z-index:2;border-radius:0 0 10px 10px;
+  inset:0;z-index:2;border-radius:10px;
   background:linear-gradient(165deg,#EDE6D4,#D9CFAF);
 }
 .env-flap{
@@ -316,39 +315,50 @@ body.cake-dark .petals{opacity:0}
 .envelope.open .letter-paper{transform:translateY(-88%)}
 .env-hint{margin-top:70px;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
 .env-hint::before{content:"✉ "}
-.stamp{
-  position:absolute;top:8%;right:6%;z-index:4;width:64px;height:74px;perspective:400px;
+.env-seal{
+  position:absolute;left:50%;top:46%;z-index:4;width:25%;aspect-ratio:1;min-width:44px;max-width:60px;
+  transform:translate(-50%,-50%);
+  filter:drop-shadow(0 4px 8px rgba(28,42,22,.35));
+  transition:transform .5s cubic-bezier(.4,0,.3,1),opacity .5s ease;
 }
-.stamp-inner{
-  position:relative;width:100%;height:100%;transform-style:preserve-3d;
-  transition:transform .7s cubic-bezier(.4,0,.2,1);
+.env-seal svg{width:100%;height:100%;display:block}
+.envelope.open .env-seal{transform:translate(-50%,-50%) scale(.6) rotate(-18deg);opacity:0}
+.letter-backdrop{
+  position:fixed;inset:0;z-index:95;display:none;
+  background:rgba(30,26,18,.55);backdrop-filter:blur(3px);
+  opacity:0;transition:opacity .5s ease;
+  padding:26px;overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
 }
-.stamp.flipped .stamp-inner{transform:rotateY(180deg)}
-.stamp-face{
-  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
-  border-radius:4px;display:grid;place-items:center;
-  background:
-    radial-gradient(circle at 4px 4px, transparent 3px, #FBF3E9 3px);
-  background-size:12px 12px;background-position:-6px -6px;
-  box-shadow:0 3px 8px rgba(78,58,56,.18);
-}
-.stamp-face.front svg{width:38px;height:38px}
-.stamp-face.back{transform:rotateY(180deg);padding:6px}
-.stamp-face.back p{font-family:var(--hand);font-size:.86rem;line-height:1.15;color:var(--rose-deep);text-align:center}
+.letter-backdrop.show{display:flex;align-items:center;justify-content:center;opacity:1}
 .letter-open{
-  max-width:420px;margin:40px auto 0;text-align:left;
-  background:#FDF8F1;border-radius:14px;padding:34px 26px;box-shadow:var(--shadow);
-  opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease;
-  display:none;
+  position:relative;max-width:460px;width:100%;text-align:left;margin:auto;
+  background:
+    repeating-linear-gradient(#FDF8F1 0 43px, rgba(95,122,82,.18) 43px 44px),
+    #FDF8F1;
+  background-position:0 78px;
+  border-radius:4px;padding:34px 26px 30px 54px;box-shadow:var(--shadow);
+  opacity:0;transform:translateY(30px) scale(.94);
+  transition:opacity .6s cubic-bezier(.3,1,.4,1),transform .6s cubic-bezier(.3,1,.4,1);
 }
-.letter-open.show{display:block;opacity:1;transform:none}
+.letter-open::before{
+  content:"";position:absolute;left:38px;top:0;bottom:0;width:1px;
+  background:rgba(190,110,100,.35);
+}
+.letter-backdrop.show .letter-open{opacity:1;transform:none}
+.letter-close{
+  position:absolute;top:10px;right:14px;font-size:1.4rem;line-height:1;color:var(--ink-soft);
+  width:34px;height:34px;display:grid;place-items:center;border-radius:50%;
+  transition:background .2s ease,color .2s ease;z-index:2;
+}
+.letter-close:hover,.letter-close:focus-visible{background:var(--blush);color:var(--rose-deep)}
 .letter-line{
-  font-family:var(--serif);font-size:1.18rem;line-height:1.75;color:var(--ink);
-  min-height:1.75em;
+  position:relative;font-family:var(--serif);font-size:1.15rem;line-height:44px;color:var(--ink);
 }
-.letter-line.sig{font-family:var(--hand);font-size:1.5rem;color:var(--terra);margin-top:16px}
-.letter-line .caret{display:inline-block;width:1px;height:1em;background:var(--rose-deep);vertical-align:-.15em;animation:caret .8s steps(1) infinite}
-@keyframes caret{50%{opacity:0}}
+.letter-line.sig{font-family:var(--hand);font-size:1.6rem;color:var(--terra);line-height:44px}
+.letter-doodle{
+  display:block;width:170px;height:auto;margin:6px 0 0 auto;opacity:.85;
+}
 
 /* ============ FINALE ============ */
 .finale{
@@ -380,7 +390,7 @@ body.cake-dark .petals{opacity:0}
   .hero-lily,.bday-banner{transition:opacity .4s ease;transform:none!important}
   .flame,.glow,.closing.beat,.scroll-hint::after,.sound-btn[aria-pressed="true"]{animation:none}
   .stem-decor .bloom-head{transition:opacity .4s ease}
-  .letter-paper,.env-flap,.stamp-inner{transition-duration:.2s}
+  .letter-paper,.env-flap,.env-seal,.letter-backdrop,.letter-open{transition-duration:.2s}
 }
 @media (min-width:600px){
   .scratch-grid{grid-template-columns:1fr 1fr 1fr}
@@ -500,7 +510,7 @@ body.cake-dark .petals{opacity:0}
 <!-- ============ ACT 3 : LINIMASA KENANGAN ============ -->
 <section class="act timeline-act" id="timelineAct">
    <h2 class="reveal d1">Perjalanan <em>kita</em></h2>
-  <p class="lede reveal d2">Beberapa potongan waktu yang tidak akan pernah kuizinkan pudar.</p>
+  <p class="lede reveal d2">Beberapa potongan waktu yang tidak akan pernah pudar.</p>
   <div class="days-counter reveal d3">sudah <b id="daysNum">…</b> hari bersamamu ♥</div>
 
   <div class="timeline" id="timeline">
@@ -510,90 +520,88 @@ body.cake-dark .petals{opacity:0}
 
     <article class="memory reveal">
       <div class="frame" style="--tilt:-1.4deg">
-        <div class="frame-img" data-p="0.055"><div style="text-align:center">
-          <svg viewBox="0 0 44 44" fill="none" stroke="#5F7A52" stroke-width="1.4"><circle cx="22" cy="17" r="6"/><path d="M22,23 C22,30 22,34 22,38 M14,29 C18,27 20,26 22,26 M30,29 C26,27 24,26 22,26"/></svg>
-          <p>[FOTO 1]</p></div></div>
-        <p class="caption"><span class="when">[TANGGAL / TAHUN]</span>[KENANGAN 1 — tempat kita pertama kali bertemu]</p>
+        <div class="frame-img" data-p="0.055"><img src="foto1.jpeg" alt="Pertemuan pertama"></div>
+        <p class="caption">Kenangan pertama kita</p>
       </div>
     </article>
 
     <article class="memory reveal rv-rot">
       <div class="frame" style="--tilt:1.6deg">
-        <div class="frame-img" data-p="-0.05"><div style="text-align:center">
-          <svg viewBox="0 0 44 44" fill="none" stroke="#5F7A52" stroke-width="1.4"><path d="M22 38 C10 30 4 22 8 14 C11 8 19 8 22 14 C25 8 33 8 36 14 C40 22 34 30 22 38 Z"/></svg>
-          <p>[FOTO 2]</p></div></div>
-        <p class="caption"><span class="when">[TANGGAL / TAHUN]</span>[KENANGAN 2 — saat aku tahu kamu orangnya]</p>
+        <div class="frame-img" data-p="-0.05"><img src="foto2.jpeg" alt="LDR"></div>
+        <p class="caption">Momen dekat disaat kita sering jauh</p>
       </div>
     </article>
 
     <article class="memory reveal rv-left">
       <div class="frame" style="--tilt:-1deg">
-        <div class="frame-img" data-p="0.06"><div style="text-align:center">
-          <svg viewBox="0 0 44 44" fill="none" stroke="#5F7A52" stroke-width="1.4"><path d="M8 34 L18 20 L26 28 L32 22 L38 30"/><circle cx="14" cy="12" r="3.4"/><rect x="5" y="7" width="34" height="30" rx="3"/></svg>
-          <p>[FOTO 3]</p></div></div>
-        <p class="caption"><span class="when">[TANGGAL / TAHUN]</span>[KENANGAN 3 — perjalanan favorit kita]</p>
+        <div class="frame-img" data-p="0.06"><img src="foto3.jpeg" alt="Prewedding"></div>
+        <p class="caption">Prewed dadakan, nggak terlupakan</p>
       </div>
     </article>
 
     <article class="memory reveal rv-rot">
       <div class="frame" style="--tilt:1.2deg">
-        <div class="frame-img" data-p="-0.055"><div style="text-align:center">
-          <svg viewBox="0 0 44 44" fill="none" stroke="#5F7A52" stroke-width="1.4"><path d="M22 6 L26 16 L37 17 L29 24 L31 35 L22 29 L13 35 L15 24 L7 17 L18 16 Z"/></svg>
-          <p>[FOTO 4]</p></div></div>
-        <p class="caption"><span class="when">[TANGGAL / TAHUN]</span>[KENANGAN 4 — hari yang mengubah segalanya]</p>
+        <div class="frame-img" data-p="-0.055"><img src="foto4.jpeg" alt="Ijab qabul"></div>
+        <p class="caption">Momen sakral dimana kita menjadi satu</p>
       </div>
     </article>
 
     <article class="memory reveal">
       <div class="frame" style="--tilt:-1.6deg">
-        <div class="frame-img" data-p="0.05"><div style="text-align:center">
-          <svg viewBox="0 0 44 44" fill="none" stroke="#5F7A52" stroke-width="1.4"><circle cx="17" cy="24" r="7"/><circle cx="27" cy="24" r="7"/><path d="M22 10 L22 15"/></svg>
-          <p>[FOTO 5]</p></div></div>
-        <p class="caption"><span class="when">[TANGGAL / TAHUN]</span>[KENANGAN 5 — kita, hari ini]</p>
+        <div class="frame-img" data-p="0.05"><img src="foto5.jpeg" alt="Resepsi"></div>
+        <p class="caption">Kebahagiaan setelah tangis haru</p>
       </div>
     </article>
   </div>
 </section>
-
-<!-- ============ ACT 4 : GOSOK & TEMUKAN ============ -->
-<section class="act scratch-act" id="scratchAct">
-   <h2 class="reveal d1">Usap <em>pelan-pelan</em></h2>
-  <p class="lede reveal d2">Di balik tiap kartu, ada satu alasan aku mencintaimu.</p>
-
-  <div class="scratch-grid">
-    <div class="scratch-card reveal" tabindex="0"><div class="secret">Caramu tertawa</div><canvas></canvas></div>
-    <div class="scratch-card reveal d1" tabindex="0"><div class="secret">Kesabaranmu</div><canvas></canvas></div>
-    <div class="scratch-card reveal" tabindex="0"><div class="secret">Masakanmu</div><canvas></canvas></div>
-    <div class="scratch-card reveal d1" tabindex="0"><div class="secret">Doa-doamu</div><canvas></canvas></div>
-    <div class="scratch-card reveal" tabindex="0"><div class="secret">Rumah terasa rumah karena kamu</div><canvas></canvas></div>
-    <div class="scratch-card reveal d1" tabindex="0"><div class="secret">Semuanya, tanpa syarat</div><canvas></canvas></div>
-  </div>
-</section>
-
+ 
 <!-- ============ ACT 5 : SURAT ============ -->
 <section class="act letter-act" id="letterAct">
-   <h2 class="reveal d1">Satu surat, <em>untukmu</em></h2>
-  <p class="lede reveal d2" style="margin:0 auto">Kutulis pelan-pelan, seperti caraku menyayangimu.</p>
-
+  
   <div class="envelope-wrap reveal d3">
     <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Buka amplop surat">
       <div class="env-back"></div>
       <div class="letter-paper"></div>
       <div class="env-front"></div>
       <div class="env-flap"></div>
-      <button class="stamp" id="stamp" aria-label="Prangko — ada rahasia kecil">
-        <div class="stamp-inner">
-          <div class="stamp-face front">
-            <svg viewBox="0 0 44 44" fill="none" stroke="#5F7A52" stroke-width="1.6"><path d="M22 36 C11 29 6 22 9.5 15 C12 10 19 10 22 15.5 C25 10 32 10 34.5 15 C38 22 33 29 22 36 Z" fill="#DCE5D0"/></svg>
-          </div>
-          <div class="stamp-face back"><p>[PESAN RAHASIA DI BALIK PRANGKO — mis. psst… cek bawah bantalmu]</p></div>
-        </div>
-      </button>
+      <div class="env-seal" aria-hidden="true">
+        <svg viewBox="0 0 60 60">
+          <defs>
+            <radialGradient id="sealG" cx="34%" cy="30%" r="70%">
+              <stop offset="0%" stop-color="#7C9268"/><stop offset="58%" stop-color="#4F6B41"/><stop offset="100%" stop-color="#3A5230"/>
+            </radialGradient>
+          </defs>
+          <circle cx="30" cy="30" r="27" fill="url(#sealG)"/>
+          <circle cx="30" cy="30" r="27" fill="none" stroke="rgba(28,42,22,.35)" stroke-width="1"/>
+          <path d="M30 41 C17 33 11 24 16 16 C19.5 10.5 27 10.5 30 17 C33 10.5 40.5 10.5 44 16 C49 24 43 33 30 41 Z" fill="#EDF0DE" opacity=".92"/>
+        </svg>
+      </div>
     </div>
-    <p class="env-hint" id="envHint">ketuk amplopnya</p>
-  </div> 
-  <div class="letter-open" id="letterOpen" aria-live="polite"></div>
+    <p class="env-hint" id="envHint"></p>
+  </div>
 </section>
+
+<div class="letter-backdrop" id="letterBackdrop">
+  <div class="letter-open" id="letterOpen" aria-live="polite">
+    <button class="letter-close" id="letterClose" aria-label="Tutup surat">✕</button>
+    <div id="letterText"></div>
+    <svg class="letter-doodle" viewBox="0 0 140 100" aria-hidden="true">
+      <!-- simple kid-drawn flower: loopy petals around a center circle, on a stem -->
+      <path d="M27,26 C21,16 27,7 33,14 C36,6 46,7 43,17 C52,14 55,24 45,26 C53,31 47,40 38,34 C39,44 28,44 30,34 C20,39 15,29 24,26 C15,22 19,13 27,26 Z"
+            fill="none" stroke="#4F6B41" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="34" cy="25" r="7" fill="none" stroke="#B99B5B" stroke-width="2" stroke-linecap="round"/>
+      <path d="M34,42 C32,58 36,64 33,80" fill="none" stroke="#5F7A52" stroke-width="2.1" stroke-linecap="round"/>
+      <path d="M33,58 C26,55 21,58 16,54" fill="none" stroke="#8FA680" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M34,68 C41,66 45,70 42,64" fill="none" stroke="#8FA680" stroke-width="1.6" stroke-linecap="round"/>
+      <!-- couple of hearts -->
+      <path d="M78,22 C75,16 67,18 68,25 C69,31 76,34 78,39 C81,34 88,31 88,25 C89,17 81,16 78,22 Z"
+            fill="none" stroke="#9E5F68" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M100,50 C98,46 93,47 93,51 C94,55 98,57 100,60 C102,57 107,55 107,51 C107,47 102,46 100,50 Z"
+            fill="none" stroke="#B99B5B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="58" y="86" font-family="Caveat, cursive" font-size="18" fill="#7C8A4C" transform="rotate(-3 58 86)">Farhan</text>
+    </svg>
+  </div>
+</div>
 
 <!-- ============ FINALE ============ -->
 <section class="finale" id="finale">
@@ -609,14 +617,14 @@ body.cake-dark .petals{opacity:0}
 /* ================= PERSONALISASI ================= */
 // Ganti tanggal ini dengan tanggal mulai hubungan / menikah (format: YYYY-MM-DD)
 var START_DATE = "[YYYY-MM-DD]"; // contoh: "2026-07-08"
-// Isi surat — tiap baris akan menulis dirinya sendiri
+// Isi surat — ganti dengan kata-katamu sendiri kapan saja
 var LETTER_LINES = [
   "Sayangku, Erina Khalisah Nurindriyani,",
-  "[SURAT BARIS 1 — kenangan yang paling kamu simpan tentang dia]",
-  "[SURAT BARIS 2 — hal yang paling kamu syukuri darinya]",
-  "[SURAT BARIS 3 — janji atau harapanmu untuk tahun ini]",
-  "Terima kasih sudah menjadi rumah bagiku.",
-  "— [Muhammad Farhan Binashrillah], [17 Juli 2026]"
+  "Di hari kelahiranmu ini, aku cuma mau berhenti sejenak dan bilang: terima kasih sudah memilih untuk terus berjalan bersamaku, di hari-hari baik maupun yang berat.",
+  "Aku selalu bersyukur untuk caramu mencintai dengan tulus, untuk sabarmu menghadapi aku, dan untuk setiap tawa kecil yang kamu bagi tanpa kamu sadari itu berarti banyak buatku.",
+  "Tahun ini, aku janji akan lebih hadir, lebih mendengarkan, lebih mengingat, dan terus belajar jadi pasangan yang pantas untuk perjuanganmu selama ini.",
+  "Terima kasih sudah menjadi rumah bagiku. Sayang Beoh banyak banyakk sayangkuu cintahhhh.",
+  "— Muhammad Farhan Binashrillah, 17 Juli 2026"
 ];
 
 var PALETTE = ["#DCE5D0","#8FA680","#7C8A4C","#B99B5B","#5F7A52"];
@@ -703,7 +711,7 @@ document.body.classList.add("cake-dark");
 (function(){
   var el = document.getElementById("daysNum");
   var d = new Date(START_DATE);
-  if (isNaN(d.getTime())){ el.textContent = "[N]"; return; }
+  if (isNaN(d.getTime())){ el.textContent = "1088"; return; }
   var days = Math.max(0, Math.floor((Date.now() - d.getTime())/86400000));
   if (reduced){ el.textContent = days.toLocaleString("id-ID"); return; }
   var t0 = null;
@@ -913,55 +921,46 @@ document.body.classList.add("cake-dark");
 (function(){
   var env = document.getElementById("envelope");
   var hintEl = document.getElementById("envHint");
-  var box = document.getElementById("letterOpen");
-  var opened = false;
+  var backdrop = document.getElementById("letterBackdrop");
+  var textBox = document.getElementById("letterText");
+  var closeBtn = document.getElementById("letterClose");
+  var opened = false, written = false;
 
-  function typeLines(){
-    box.classList.add("show");
-    var li = 0;
-    function nextLine(){
-      if (li >= LETTER_LINES.length) return;
+  function writeLetter(){
+    if (written) return; written = true;
+    LETTER_LINES.forEach(function(text, i){
       var p = document.createElement("p");
-      p.className = "letter-line" + (li === LETTER_LINES.length-1 ? " sig" : "");
-      box.appendChild(p);
-      var text = LETTER_LINES[li];
-      if (reduced){ p.textContent = text; li++; setTimeout(nextLine, 60); return; }
-      var caret = document.createElement("span"); caret.className = "caret";
-      p.appendChild(caret);
-      var ci = 0;
-      (function tick(){
-        if (ci < text.length){
-          caret.before(document.createTextNode(text[ci++]));
-          setTimeout(tick, 26 + Math.random()*30);
-        } else {
-          caret.remove(); li++;
-          setTimeout(nextLine, 420);
-        }
-      })();
-    }
-    nextLine();
+      p.className = "letter-line" + (i === LETTER_LINES.length-1 ? " sig" : "");
+      p.textContent = text;
+      textBox.appendChild(p);
+    });
+  }
+  function showLetter(){
+    writeLetter();
+    backdrop.classList.add("show");
+    document.body.style.overflow = "hidden";
+  }
+  function closeLetter(){
+    backdrop.classList.remove("show");
+    document.body.style.overflow = "";
   }
   function open(){
     if (opened) return; opened = true;
     env.classList.add("open");
     hintEl.style.opacity = 0;
     if (canVibe) navigator.vibrate(25);
-    setTimeout(typeLines, reduced ? 250 : 1500);
+    setTimeout(showLetter, reduced ? 300 : 1200);
   }
-  env.addEventListener("click", function(e){
-    if (e.target.closest(".stamp")) return; // prangko punya rahasianya sendiri
-    open();
-  });
+  env.addEventListener("click", open);
   env.addEventListener("keydown", function(e){
     if (e.key === "Enter" || e.key === " "){ e.preventDefault(); open(); }
   });
-
-  // rahasia kecil #2: prangko bisa dibalik
-  var stamp = document.getElementById("stamp");
-  stamp.addEventListener("click", function(e){
-    e.stopPropagation();
-    stamp.classList.toggle("flipped");
-    if (canVibe) navigator.vibrate(12);
+  closeBtn.addEventListener("click", closeLetter);
+  backdrop.addEventListener("click", function(e){
+    if (e.target === backdrop) closeLetter();
+  });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && backdrop.classList.contains("show")) closeLetter();
   });
 })();
 
