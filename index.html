@@ -74,10 +74,15 @@ h2 em{font-style:italic;color:var(--rose-deep)}
 /* ============ FIXED UI: flower-stem scroll progress ============ */
 .stem-progress{
   position:fixed;left:4px;top:0;height:100vh;height:100svh;width:30px;z-index:65;pointer-events:none;
+  opacity:1;transition:opacity .8s ease;
 }
 .stem-progress path.stem{stroke:var(--rose);stroke-width:1.6;fill:none;stroke-linecap:round;
   stroke-dasharray:1;stroke-dashoffset:1}
-.stem-decor{position:fixed;left:4px;top:0;height:100vh;height:100svh;width:30px;z-index:66;pointer-events:none}
+.stem-decor{
+  position:fixed;left:4px;top:0;height:100vh;height:100svh;width:30px;z-index:66;pointer-events:none;
+  opacity:1;transition:opacity .8s ease;
+}
+body.cake-dark .stem-progress,body.cake-dark .stem-decor{opacity:0}
 .stem-decor .leaf{
   position:absolute;width:13px;height:8px;background:var(--rose);
   border-radius:80% 10% 80% 10%;opacity:0;transition:opacity .8s ease;
@@ -92,7 +97,8 @@ h2 em{font-style:italic;color:var(--rose-deep)}
 .stem-decor .bloom-head.on{transform:scale(1)}
 
 /* ============ PETALS drifting ============ */
-.petals{position:fixed;inset:0;pointer-events:none;z-index:55;overflow:hidden}
+.petals{position:fixed;inset:0;pointer-events:none;z-index:55;overflow:hidden;opacity:1;transition:opacity .8s ease}
+body.cake-dark .petals{opacity:0}
 .petal{position:absolute;top:-6%;will-change:transform;animation:petalFall linear infinite}
 .petal i{
   display:block;width:14px;height:11px;border-radius:80% 10% 80% 10%;
@@ -113,10 +119,13 @@ h2 em{font-style:italic;color:var(--rose-deep)}
 .hero-lily{
   position:absolute;bottom:0;width:min(440px,78vw);height:auto;pointer-events:none;
   opacity:0;transition:opacity 1.6s ease .3s,transform 1.6s cubic-bezier(.3,1,.4,1) .3s;
+  -webkit-mask-image:linear-gradient(to bottom, #000 90%, transparent 100%);
+  mask-image:linear-gradient(to bottom, #000 90%, transparent 100%);
 }
 .hero-lily-left{left:0;transform:translate(-18%,10%)}
 .hero-lily-right{right:0;transform:translate(18%,10%)}
-body.bloom .hero-lily{opacity:1;transform:none}
+.hero.in .hero-lily{opacity:1;transform:none}
+.hero.in .hero-lily-right{opacity:.8}
 .hero .eyebrow{opacity:0;transform:translateY(14px);transition:all 1s ease .4s}
 .hero h1{
   font-size:clamp(3rem, 16vw, 4.6rem);font-weight:400;font-style:italic;line-height:1.05;
@@ -126,14 +135,14 @@ body.bloom .hero-lily{opacity:1;transform:none}
   font-family:var(--hand);font-size:1.35rem;color:var(--terra);margin-top:10px;
   opacity:0;transition:opacity 1.2s ease 1.4s;
 }
-body.bloom .hero .eyebrow, body.bloom .hero h1{opacity:1;transform:none}
-body.bloom .hero-date{opacity:1}
+.hero.in .eyebrow, .hero.in h1{opacity:1;transform:none}
+.hero.in .hero-date{opacity:1}
 .scroll-hint{
   position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
   font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);
   opacity:0;transition:opacity 1.4s ease 2.2s;
 }
-body.bloom .scroll-hint{opacity:.85}
+.hero.in .scroll-hint{opacity:.85}
 .scroll-hint::after{
   content:"";display:block;width:1px;height:34px;margin:10px auto 0;
   background:linear-gradient(var(--rose),transparent);
@@ -149,13 +158,48 @@ body.bloom .scroll-hint{opacity:.85}
 .reveal.in{opacity:1;transform:none}
 .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
 
-/* ============ ACT 2 — CAKE ============ */
+/* ============ ACT 1 — CAKE / DARK ROOM ============ */
 .cake-act{text-align:center}
+.cake-room{
+  min-height:100vh;min-height:100svh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  background:#0A0906;transition:background 1.6s ease;
+}
+.cake-room.lit{background:var(--paper)}
+.cake-eyebrow{
+  color:#8C7A55;opacity:.85;transition:color 1.2s ease,opacity 1.2s ease;
+}
+.cake-room.lit .cake-eyebrow{color:var(--gold);opacity:1}
+.cake-heading{
+  color:#C9BFA0;transition:color 1.2s ease;
+}
+.cake-room.lit .cake-heading{color:var(--ink)}
+.cake-heading em{color:#D8A25C;transition:color 1.2s ease}
+.cake-room.lit .cake-heading em{color:var(--rose-deep)}
+.cake-lede{
+  color:#6E6552;transition:color 1.2s ease;
+}
+.cake-room.lit .cake-lede{color:var(--ink-soft)}
+.bday-banner{
+  width:min(300px,80vw);margin:14px auto -14px;position:relative;z-index:3;
+  opacity:0;transform:translateY(-140px) rotate(-6deg);
+  transition:opacity .9s ease,transform 1.1s cubic-bezier(.3,1.15,.4,1);
+}
+.bday-banner.show{opacity:1;transform:none}
+.bday-banner svg{width:100%;height:auto;display:block;overflow:visible}
 .cake-stage{
-  position:relative;margin:34px auto 8px;width:min(320px,86vw);
+  position:relative;margin:8px auto 8px;width:min(320px,86vw);
   touch-action:none;user-select:none;-webkit-user-select:none;
 }
-.cake-stage svg{width:100%;height:auto;display:block}
+.cake-stage svg{width:100%;height:auto;display:block;overflow:visible}
+.cake-stage .cake-glow{
+  opacity:1;transition:opacity 1.6s ease;
+}
+.cake-room.lit .cake-stage .cake-glow{opacity:0}
+.cake-stage .cake-lower{
+  opacity:.16;transition:opacity 1.6s ease;
+}
+.cake-room.lit .cake-stage .cake-lower{opacity:1}
 .flame{transform-origin:center 100%;animation:flick .38s ease-in-out infinite alternate}
 .flame:nth-child(odd){animation-duration:.46s;animation-delay:.1s}
 @keyframes flick{
@@ -181,10 +225,11 @@ body.bloom .scroll-hint{opacity:.85}
   100%{opacity:0;transform:translateY(-70px) translateX(10px) scale(1.7)}
 }
 .confetti-bit{position:absolute;width:8px;height:11px;border-radius:2px;will-change:transform,opacity;pointer-events:none}
-.cake-hint{font-size:.8rem;color:var(--ink-soft);letter-spacing:.06em;margin-top:10px;transition:opacity .6s ease}
+.cake-hint{font-size:.8rem;color:#8C7A55;letter-spacing:.06em;margin-top:10px;transition:opacity .6s ease,color 1.2s ease}
 .cake-hint::before{content:"✦ ";color:var(--gold)}
+.cake-room.lit .cake-hint{color:var(--ink-soft)}
 .wish{
-  max-width:36ch;margin:26px auto 0;opacity:0;transform:translateY(16px);
+  max-width:36ch;margin:4px auto 0;opacity:0;transform:translateY(16px);
   transition:opacity 1.4s ease .5s,transform 1.4s ease .5s;
   font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1.5;color:var(--rose-deep);
 }
@@ -327,83 +372,13 @@ body.bloom .scroll-hint{opacity:.85}
 .finale .fin-date{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
 .heart-rain-bit{position:fixed;top:-5%;font-size:20px;z-index:80;pointer-events:none;will-change:transform,opacity}
 
-/* ============ GERBANG SURAT (intro gate) ============ */
-body.gated{overflow:hidden}
-.intro-gate{
-  position:fixed;inset:0;z-index:90;
-  transition:opacity 1.1s ease,visibility 0s linear 1.1s;
-}
-.intro-gate.away{opacity:0;visibility:hidden;pointer-events:none}
-.gate-eyebrow{
-  position:fixed;left:26px;right:26px;top:calc(48px + env(safe-area-inset-top));z-index:6;
-  font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
-  color:var(--gold);font-weight:500;text-align:center;pointer-events:none;
-  transition:opacity .4s ease;
-}
-
-/* cover: full-bleed, split at an edge-to-edge seam, no flap silhouette */
-.cover{position:fixed;inset:0;cursor:pointer;perspective:1200px}
-.cover-half{
-  position:absolute;left:0;right:0;height:50%;overflow:hidden;
-  background:linear-gradient(165deg,#EDE6D4,#D9CFAF);
-}
-.cover-half.top{top:0;transition:transform 1.1s cubic-bezier(.6,0,.25,1) .05s,opacity 1.1s ease .05s}
-.cover-half.bottom{bottom:0;transition:transform 1.1s cubic-bezier(.6,0,.25,1) .05s,opacity 1.1s ease .05s}
-.cover-seam{
-  position:absolute;left:0;right:0;top:50%;height:1px;z-index:2;
-  background:rgba(126,59,56,.4);
-  transition:opacity .4s ease .3s;
-}
-.cover.open .cover-half.top{transform:translateY(-100%);opacity:0}
-.cover.open .cover-half.bottom{transform:translateY(100%);opacity:0}
-.cover.open .cover-seam{opacity:0}
-.intro-gate.opening .gate-eyebrow,.intro-gate.opening .gate-hint{opacity:0}
-.wax-seal{
-  position:fixed;left:50%;top:50%;z-index:5;width:80px;height:80px;
-  transform:translate(-50%,-50%);
-  border-radius:47% 53% 50% 50% / 52% 48% 52% 48%;
-  background:radial-gradient(circle at 34% 30%, #7C9268, #4F6B41 58%, #3A5230);
-  box-shadow:0 6px 16px rgba(58,82,48,.4),
-             inset 0 2px 5px rgba(230,238,220,.35),
-             inset 0 -4px 8px rgba(28,42,22,.45);
-  display:grid;place-items:center;color:#EDF0DE;
-  font-size:1.7rem;line-height:1;
-  transition:transform .22s ease;
-}
-.wax-seal::before{content:"";position:absolute;inset:9px;border-radius:inherit;border:1.5px solid rgba(243,221,206,.5)}
-.wax-seal::after{
-  content:"";position:absolute;inset:-9px;border-radius:inherit;
-  border:1.5px solid rgba(158,95,104,.45);
-  animation:sealRing 2.3s ease-out infinite;
-}
-@keyframes sealRing{
-  0%{transform:scale(.88);opacity:0}
-  35%{opacity:.8}
-  100%{transform:scale(1.28);opacity:0}
-}
-.wax-seal:active{transform:translate(-50%,-50%) scale(.92)}
-.wax-seal.pop{animation:sealPop .6s cubic-bezier(.4,0,.6,1) forwards}
-.wax-seal.pop::after{display:none}
-@keyframes sealPop{
-  30%{transform:translate(-50%,-50%) scale(1.18) rotate(-7deg);opacity:1}
-  100%{transform:translate(-50%,-50%) scale(0) rotate(22deg);opacity:0}
-}
-.gate-hint{
-  position:fixed;left:26px;right:26px;bottom:calc(48px + env(safe-area-inset-bottom));z-index:6;
-  font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);text-align:center;
-  animation:hintFade 2.4s ease-in-out infinite;pointer-events:none;
-  transition:opacity .4s ease;
-}
-@keyframes hintFade{0%,100%{opacity:.45}50%{opacity:1}}
-
 /* ============ REDUCED MOTION ============ */
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   .petals,.heart-rain-bit{display:none}
   .reveal,.hero .eyebrow,.hero h1,.hero-date,.scroll-hint,.wish{transition:opacity .4s ease;transform:none!important}
-  .hero-lily{transition:opacity .4s ease;transform:none!important}
-  .flame,.glow,.closing.beat,.scroll-hint::after,.sound-btn[aria-pressed="true"],.gate-hint,.wax-seal::after{animation:none}
-  .intro-gate{transition:opacity .35s ease,visibility 0s linear .35s}
+  .hero-lily,.bday-banner{transition:opacity .4s ease;transform:none!important}
+  .flame,.glow,.closing.beat,.scroll-hint::after,.sound-btn[aria-pressed="true"]{animation:none}
   .stem-decor .bloom-head{transition:opacity .4s ease}
   .letter-paper,.env-flap,.stamp-inner{transition-duration:.2s}
 }
@@ -442,44 +417,39 @@ body.gated{overflow:hidden}
 <div class="petals" id="petals" aria-hidden="true"></div>
 
 <noscript><style>
-.intro-gate{display:none}
 .hero .eyebrow,.hero h1,.hero-date,.scroll-hint,.reveal,.wish{opacity:1;transform:none}
-.hero-lily{opacity:1;transform:none}
+.hero-lily,.bday-banner{opacity:1;transform:none}
 </style></noscript>
 
-<!-- ============ GERBANG : SURAT BERSEGEL ============ -->
-<div class="intro-gate" id="introGate">
-   <div class="cover gate-env" id="gateEnv">
-    <div class="cover-half top"></div>
-    <div class="cover-half bottom"></div>
-    <div class="cover-seam"></div>
-    <button class="wax-seal" id="waxSeal" aria-label="Tekan segel lilin untuk membuka surat">♥</button>
+<!-- ============ ACT 1 : TIUP LILIN ============ -->
+<section class="act cake-act cake-room" id="cakeAct">
+  <p class="eyebrow cake-eyebrow"></p> 
+
+  <div class="bday-banner" id="bdayBanner" aria-hidden="true">
+    <svg viewBox="0 0 300 74" aria-hidden="true">
+      <path d="M0,10 L26,10 L14,37 L26,64 L0,64 L14,37 Z" fill="#5F7A52"/>
+      <path d="M300,10 L274,10 L286,37 L274,64 L300,64 L286,37 Z" fill="#5F7A52"/>
+      <rect x="18" y="6" width="264" height="62" rx="6" fill="#7C8A4C"/>
+      <rect x="18" y="6" width="264" height="14" rx="6" fill="#8FA680" opacity=".55"/>
+      <text x="150" y="45" text-anchor="middle" font-family="Cormorant Garamond, Georgia, serif" font-style="italic" font-weight="600" font-size="27" fill="#FBF9F3">Happy Birthday</text>
+    </svg>
   </div>
- </div>
 
-<!-- ============ ACT 1 : PEMBUKA ============ -->
-<header class="act hero" id="hero">
-  <img class="hero-lily hero-lily-left" src="calla-lily-left.png" alt="" aria-hidden="true">
-  <img class="hero-lily hero-lily-right" src="calla-lily-right.png" alt="" aria-hidden="true">
-
-  <p class="eyebrow">untuk kamu, satu-satunya</p>
-  <h1>Erina Khalisah Nurindriyani</h1>
-  <p class="hero-date">Jumat, 17 Juli 2026</p>
-
- </header>
-
-<!-- ============ ACT 2 : TIUP LILIN ============ -->
-<section class="act cake-act" id="cakeAct">
-   <h2 class="reveal d1">Tiup <em>lilinnya</em></h2>
-  <p class="lede reveal d2" style="margin:0 auto">Pejamkan matamu sebentar. Buat satu permintaan — yang paling dalam.</p>
-
-  <div class="cake-stage reveal d3" id="cakeStage">
+  <div class="cake-stage" id="cakeStage">
     <svg viewBox="0 0 320 300" aria-label="Kue ulang tahun dengan lilin">
       <defs>
         <linearGradient id="flameG" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#F3C77B"/><stop offset="100%" stop-color="#C97B4F"/>
         </linearGradient>
+        <radialGradient id="candleGlowG" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#F3C77B" stop-opacity=".55"/>
+          <stop offset="55%" stop-color="#C9873E" stop-opacity=".16"/>
+          <stop offset="100%" stop-color="#C9873E" stop-opacity="0"/>
+        </radialGradient>
       </defs>
+      <!-- warm spotlight over candles, visible only before lights turn on -->
+      <ellipse class="cake-glow" cx="160" cy="130" rx="150" ry="130" fill="url(#candleGlowG)"/>
+      <g class="cake-lower">
       <!-- plate -->
       <ellipse cx="160" cy="272" rx="128" ry="15" fill="#D9CFAF" opacity=".55"/>
       <ellipse cx="160" cy="266" rx="118" ry="14" fill="#F0EBDC"/>
@@ -487,6 +457,7 @@ body.gated{overflow:hidden}
       <rect x="70" y="196" width="180" height="70" rx="13" fill="#E3DABE"/>
       <path d="M70,206 q11,14 22,0 q11,14 23,0 q11,14 22,0 q11,14 23,0 q11,14 22,0 q11,14 23,0 q11,14 23,0 q11,14 22,0 L250,196 L70,196 Z" fill="#FAF7EC"/>
       <circle cx="98" cy="242" r="3.4" fill="#8FA680"/><circle cx="160" cy="250" r="3.4" fill="#B99B5B"/><circle cx="224" cy="240" r="3.4" fill="#8FA680"/>
+      </g>
       <!-- top tier -->
       <rect x="96" y="140" width="128" height="58" rx="11" fill="#EAE2C6" opacity="1"/>
       <path d="M96,149 q10,12 20,0 q10,12 21,0 q10,12 21,0 q10,12 22,0 q10,12 22,0 q10,12 22,0 L224,140 L96,140 Z" fill="#FAF7EC"/>
@@ -509,13 +480,22 @@ body.gated{overflow:hidden}
       </g>
     </svg>
   </div>
-  <p class="cake-hint reveal d3" id="cakeHint">Tiup lilinnya</p>
+  <p class="cake-hint" id="cakeHint"></p>
 
   <div class="wish" id="wishMsg">
-    “Semoga semua doa yang kamu bisikkan tahun ini, pelan-pelan Allah jadikan nyata.”
+    “Semoga semua doa mu tahun ini, pelan-pelan Allah jadikan nyata.”
     <small>— dari suamimu, yang akan selalu mendukungmu</small>
   </div>
 </section>
+
+<!-- ============ ACT 2 : PEMBUKA ============ -->
+<header class="act hero" id="hero">
+  <img class="hero-lily hero-lily-left" src="calla-lily-left.png" alt="" aria-hidden="true">
+  <img class="hero-lily hero-lily-right" src="calla-lily-right.png" alt="" aria-hidden="true">
+  <p class="eyebrow">untuk kamu, satu-satunya</p>
+  <h1>Erina Khalisah Nurindriyani</h1>
+  <p class="hero-date">- Jumat, 17 · Juli · 2026 -</p>
+</header>
 
 <!-- ============ ACT 3 : LINIMASA KENANGAN ============ -->
 <section class="act timeline-act" id="timelineAct">
@@ -611,16 +591,14 @@ body.gated{overflow:hidden}
       </button>
     </div>
     <p class="env-hint" id="envHint">ketuk amplopnya</p>
-  </div>
-
+  </div> 
   <div class="letter-open" id="letterOpen" aria-live="polite"></div>
 </section>
 
 <!-- ============ FINALE ============ -->
 <section class="finale" id="finale">
   <p class="closing reveal" id="closingLine">Selamat ulang tahun,<br>cintaku.</p>
-  <p class="names reveal d1">Erina Khalisah Nurindriyani &amp; Muhammad Farhan Binashrillah</p>
-  <p class="fin-date reveal d2">Jumat, 17 · 07 · 2026</p>
+   <p class="fin-date reveal d2">- Jumat, 17 · 07 · 2026 -</p>
 </section>
 
 
@@ -644,31 +622,7 @@ var LETTER_LINES = [
 var PALETTE = ["#DCE5D0","#8FA680","#7C8A4C","#B99B5B","#5F7A52"];
 var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 var canVibe = "vibrate" in navigator;
-
-/* ================= GERBANG SURAT: segel lilin ================= */
-document.body.classList.add("gated");
-(function(){
-  var gate = document.getElementById("introGate");
-  var env  = document.getElementById("gateEnv");
-  var seal = document.getElementById("waxSeal");
-  var opened = false;
-  function openGate(){
-    if (opened) return; opened = true;
-    // audio harus dimulai sinkron di dalam gesture (aturan iOS/Android)
-    if (window.__enableSound) window.__enableSound();
-    seal.classList.add("pop");
-    gate.classList.add("opening");
-    if (canVibe) navigator.vibrate([15,40,25]);
-    setTimeout(function(){ env.classList.add("open"); }, 240);
-    setTimeout(function(){
-      gate.classList.add("away");
-      document.body.classList.remove("gated");
-      document.body.classList.add("bloom");
-      setTimeout(function(){ gate.remove(); }, 1250);
-    }, reduced ? 350 : 1650);
-  }
-  seal.addEventListener("click", openGate);
-})();
+document.body.classList.add("cake-dark");
 
 /* ================= PETALS ================= */
 (function petals(){
@@ -699,7 +653,7 @@ document.body.classList.add("gated");
       if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
     });
   }, {threshold:0.18, rootMargin:"0px 0px -36px 0px"});
-  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+  document.querySelectorAll(".reveal, .bday-banner, .hero").forEach(function(el){ io.observe(el); });
 })();
 
 /* ================= SCROLL TICKER: stem, vine, parallax ================= */
@@ -764,9 +718,11 @@ document.body.classList.add("gated");
   },{threshold:0.6}).observe(el);
 })();
 
-/* ================= ACT 2: LILIN ================= */
+/* ================= ACT 1: LILIN ================= */
 (function(){
   var stage = document.getElementById("cakeStage");
+  var room = document.getElementById("cakeAct");
+  var banner = document.getElementById("bdayBanner");
   var units = Array.prototype.slice.call(stage.querySelectorAll(".flame-unit"));
   var hint = document.getElementById("cakeHint");
   var wish = document.getElementById("wishMsg");
@@ -843,12 +799,16 @@ document.body.classList.add("gated");
     if (done) return; done = true;
     hint.style.opacity = 0;
     if (canVibe) navigator.vibrate([30,60,30]);
+    room.classList.add("lit");
+    document.body.classList.remove("cake-dark");
+    setTimeout(function(){ banner.classList.add("show"); banner.removeAttribute("aria-hidden"); }, 350);
     setTimeout(confetti, 300);
     setTimeout(rainHearts, 300);
     setTimeout(function(){ wish.classList.add("lit"); }, 700);
   }
 
   stage.addEventListener("pointerdown", function(e){
+    if (window.__enableSound) window.__enableSound();
     startY = e.clientY;
     blowOne();
     holdTimer = setInterval(blowOne, 480);
