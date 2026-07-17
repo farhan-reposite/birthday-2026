@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Untuk Erina Khalisah Nurindriyani ♥</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌷</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Karla:wght@300;400;500&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:      #F9F0E7;
+  --paper-deep: #F1E0D2;
+  --blush:      #EFD5CC;
+  --rose:       #C68B90;
+  --rose-deep:  #9E5F68;
+  --terra:      #B4694E;
+  --gold:       #C29A5B;
+  --ink:        #4E3A38;
+  --ink-soft:   #8B6F6B;
+  --shadow: 0 14px 34px rgba(158,95,104,.14), 0 3px 10px rgba(78,58,56,.08);
+  --serif: "Cormorant Garamond", Georgia, serif;
+  --sans: "Karla", system-ui, sans-serif;
+  --hand: "Caveat", cursive;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-weight:300;
+  line-height:1.7;
+  overflow-x:hidden;
+  letter-spacing:.01em;
+}
+/* paper grain */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:60;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection{background:var(--blush);color:var(--rose-deep)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+button:focus-visible, .scratch-card:focus-visible{outline:2px solid var(--rose-deep);outline-offset:3px;border-radius:8px}
+
+/* ============ LAYOUT ============ */
+.act{position:relative;max-width:560px;margin:0 auto;padding:104px 26px}
+.eyebrow{
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;margin-bottom:14px;
+}
+h1,h2{font-family:var(--serif);font-weight:500;color:var(--ink)}
+h2{font-size:2.15rem;line-height:1.15;margin-bottom:14px}
+h2 em{font-style:italic;color:var(--rose-deep)}
+.lede{color:var(--ink-soft);font-size:.98rem;max-width:42ch}
+
+/* ============ FIXED UI: sound toggle ============ */
+.sound-btn{
+  position:fixed;top:calc(14px + env(safe-area-inset-top));right:14px;z-index:70;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(249,240,231,.82);backdrop-filter:blur(6px);
+  box-shadow:0 4px 14px rgba(78,58,56,.14);
+  display:grid;place-items:center;color:var(--rose-deep);
+  transition:transform .3s ease;
+}
+.sound-btn:active{transform:scale(.92)}
+.sound-btn .off-line{display:none}
+.sound-btn[aria-pressed="false"] .off-line{display:block}
+.sound-btn[aria-pressed="true"]{animation:soundPulse 2.6s ease-in-out infinite}
+@keyframes soundPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+
+/* ============ FIXED UI: flower-stem scroll progress ============ */
+.stem-progress{
+  position:fixed;left:4px;top:0;height:100vh;height:100svh;width:30px;z-index:65;pointer-events:none;
+}
+.stem-progress path.stem{stroke:var(--rose);stroke-width:1.6;fill:none;stroke-linecap:round;
+  stroke-dasharray:1;stroke-dashoffset:1}
+.stem-decor{position:fixed;left:4px;top:0;height:100vh;height:100svh;width:30px;z-index:66;pointer-events:none}
+.stem-decor .leaf{
+  position:absolute;width:13px;height:8px;background:var(--rose);
+  border-radius:80% 10% 80% 10%;opacity:0;transition:opacity .8s ease;
+}
+.stem-decor .l1{top:69%;left:1px;transform:rotate(-32deg)}
+.stem-decor .l2{top:43%;left:13px;transform:rotate(150deg)}
+.stem-decor .leaf.on{opacity:.75}
+.stem-decor .bloom-head{
+  position:absolute;top:4.2%;left:2px;width:24px;height:18px;
+  transform:scale(0);transform-origin:center;transition:transform 1s cubic-bezier(.3,1.4,.5,1);
+}
+.stem-decor .bloom-head.on{transform:scale(1)}
+
+/* ============ PETALS drifting ============ */
+.petals{position:fixed;inset:0;pointer-events:none;z-index:55;overflow:hidden}
+.petal{position:absolute;top:-6%;will-change:transform;animation:petalFall linear infinite}
+.petal i{
+  display:block;width:14px;height:11px;border-radius:80% 10% 80% 10%;
+  background:linear-gradient(135deg,var(--blush),var(--rose));opacity:.55;
+  animation:petalSway ease-in-out infinite alternate;
+}
+@keyframes petalFall{to{transform:translate3d(0,112vh,0)}}
+@keyframes petalSway{
+  from{transform:translateX(-18px) rotate(-40deg)}
+  to{transform:translateX(18px) rotate(50deg)}
+}
+
+/* ============ ACT 1 — HERO ============ */
+.hero{
+  min-height:100vh;min-height:100svh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;padding-top:80px;
+}
+.hero-florals{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero-florals path.draw{
+  stroke-dasharray:1;stroke-dashoffset:1;fill:none;stroke-linecap:round;stroke-linejoin:round;
+  transition:stroke-dashoffset 2.4s cubic-bezier(.5,0,.2,1);
+}
+.hero-florals .pet{transform:scale(0);transform-origin:center;transition:transform 1.2s cubic-bezier(.3,1.5,.5,1)}
+body.bloom .hero-florals path.draw{stroke-dashoffset:0}
+body.bloom .hero-florals .pet{transform:scale(1)}
+.hero .eyebrow{opacity:0;transform:translateY(14px);transition:all 1s ease .4s}
+.hero h1{
+  font-size:clamp(3rem, 16vw, 4.6rem);font-weight:400;font-style:italic;line-height:1.05;
+  color:var(--rose-deep);opacity:0;transform:translateY(18px);transition:all 1.1s ease .7s;
+}
+.hero-date{
+  font-family:var(--hand);font-size:1.35rem;color:var(--terra);margin-top:10px;
+  opacity:0;transition:opacity 1.2s ease 1.4s;
+}
+body.bloom .hero .eyebrow, body.bloom .hero h1{opacity:1;transform:none}
+body.bloom .hero-date{opacity:1}
+.scroll-hint{
+  position:absolute;bottom:34px;left:50%;transform:translateX(-50%);
+  font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);
+  opacity:0;transition:opacity 1.4s ease 2.2s;
+}
+body.bloom .scroll-hint{opacity:.85}
+.scroll-hint::after{
+  content:"";display:block;width:1px;height:34px;margin:10px auto 0;
+  background:linear-gradient(var(--rose),transparent);
+  animation:hintDrop 2.2s ease-in-out infinite;transform-origin:top;
+}
+@keyframes hintDrop{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
+.egg-flower{position:absolute;bottom:12%;left:8%;width:56px;height:56px;pointer-events:auto;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.egg-flower:active{transform:scale(1.2) rotate(8deg)}
+
+/* ============ REVEAL SYSTEM ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .95s ease,transform .95s cubic-bezier(.22,.8,.3,1)}
+.reveal.rv-rot{transform:translateY(28px) rotate(2.5deg)}
+.reveal.rv-left{transform:translateX(-30px)}
+.reveal.rv-right{transform:translateX(30px)}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+
+/* ============ ACT 2 — CAKE ============ */
+.cake-act{text-align:center}
+.cake-stage{
+  position:relative;margin:34px auto 8px;width:min(320px,86vw);
+  touch-action:none;user-select:none;-webkit-user-select:none;
+}
+.cake-stage svg{width:100%;height:auto;display:block}
+.flame{transform-origin:center 100%;animation:flick .38s ease-in-out infinite alternate}
+.flame:nth-child(odd){animation-duration:.46s;animation-delay:.1s}
+@keyframes flick{
+  from{transform:scale(1) rotate(-3deg)}
+  to{transform:scale(1.12,.94) rotate(4deg)}
+}
+.flame.out{animation:blowOut .35s ease forwards}
+@keyframes blowOut{
+  40%{transform:scale(1.25,.6) rotate(12deg);opacity:1}
+  100%{transform:scale(0);opacity:0}
+}
+.glow{opacity:.5;animation:glowPulse 1.4s ease-in-out infinite alternate}
+@keyframes glowPulse{from{opacity:.35}to{opacity:.6}}
+.smoke{
+  position:absolute;width:8px;height:26px;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(139,111,107,.4),transparent);
+  filter:blur(1px);opacity:0;will-change:transform,opacity;
+  animation:smokeUp 2.4s ease-out forwards;
+}
+@keyframes smokeUp{
+  0%{opacity:0;transform:translateY(0) scale(.6)}
+  15%{opacity:.8}
+  100%{opacity:0;transform:translateY(-70px) translateX(10px) scale(1.7)}
+}
+.confetti-bit{position:absolute;width:8px;height:11px;border-radius:2px;will-change:transform,opacity;pointer-events:none}
+.cake-hint{font-size:.8rem;color:var(--ink-soft);letter-spacing:.06em;margin-top:10px;transition:opacity .6s ease}
+.cake-hint::before{content:"✦ ";color:var(--gold)}
+.wish{
+  max-width:36ch;margin:26px auto 0;opacity:0;transform:translateY(16px);
+  transition:opacity 1.4s ease .5s,transform 1.4s ease .5s;
+  font-family:var(--serif);font-style:italic;font-size:1.35rem;line-height:1.5;color:var(--rose-deep);
+}
+.wish.lit{opacity:1;transform:none}
+.wish small{display:block;margin-top:10px;font-family:var(--hand);font-size:1.15rem;color:var(--gold);font-style:normal}
+
+/* ============ ACT 3 — TIMELINE ============ */
+.days-counter{
+  display:inline-block;margin-top:18px;padding:10px 20px;border-radius:999px;
+  background:var(--paper-deep);color:var(--rose-deep);
+  font-family:var(--hand);font-size:1.3rem;box-shadow:var(--shadow);
+}
+.days-counter b{font-size:1.5rem;color:var(--terra)}
+.timeline{position:relative;margin-top:48px;padding-left:44px}
+.vine-svg{position:absolute;left:10px;top:0;height:100%;width:28px;overflow:visible}
+.vine-svg .vine{
+  stroke:var(--rose);stroke-width:1.5;fill:none;stroke-linecap:round;
+  stroke-dasharray:1;stroke-dashoffset:1;
+}
+.memory{position:relative;margin-bottom:58px}
+.memory::before{
+  content:"";position:absolute;left:-40px;top:22px;width:11px;height:11px;border-radius:50%;
+  background:var(--paper);border:2px solid var(--rose);transition:background .6s ease,transform .6s cubic-bezier(.3,1.6,.5,1);
+}
+.memory.in::before{background:var(--rose);transform:scale(1.25)}
+.frame{
+  background:#FDF7F0;border-radius:14px;padding:12px 12px 16px;box-shadow:var(--shadow);
+  transform:rotate(var(--tilt,0deg));
+}
+.frame-img{
+  aspect-ratio:4/5;border-radius:9px;border:1.5px dashed var(--rose);
+  background:linear-gradient(160deg,var(--blush) 0%,var(--paper-deep) 100%);
+  display:grid;place-items:center;color:var(--rose-deep);
+  will-change:transform;overflow:hidden;
+}
+.frame-img svg{width:44px;height:44px;opacity:.7}
+.frame-img p{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;margin-top:8px;opacity:.7}
+.caption{font-family:var(--hand);font-size:1.28rem;color:var(--ink);margin-top:12px;line-height:1.35}
+.caption .when{display:block;font-family:var(--sans);font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+
+/* ============ ACT 4 — SCRATCH ============ */
+.scratch-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:36px}
+.scratch-card{
+  position:relative;aspect-ratio:4/3.4;border-radius:13px;overflow:hidden;
+  box-shadow:var(--shadow);background:#FDF7F0;
+}
+.scratch-card .secret{
+  position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+  padding:12px;font-family:var(--hand);font-size:1.12rem;line-height:1.3;color:var(--rose-deep);
+}
+.scratch-card canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;transition:opacity .7s ease}
+.scratch-card.done canvas{opacity:0;pointer-events:none}
+.scratch-card.done{animation:cardPop .5s cubic-bezier(.3,1.8,.5,1)}
+@keyframes cardPop{0%{transform:scale(1)}45%{transform:scale(1.06) rotate(-1.2deg)}100%{transform:scale(1)}}
+.sparkle{
+  position:absolute;width:9px;height:9px;pointer-events:none;will-change:transform,opacity;
+  background:var(--gold);clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%);
+}
+
+/* ============ ACT 5 — LETTER ============ */
+.letter-act{text-align:center;padding-bottom:60px}
+.envelope-wrap{position:relative;margin:150px auto 30px;width:min(320px,84vw)}
+.envelope{position:relative;width:100%;aspect-ratio:32/21;cursor:pointer}
+.env-back,.env-front,.env-flap{position:absolute;border-radius:10px}
+.env-back{inset:0;background:#E9C9BC;box-shadow:var(--shadow)}
+.letter-paper{
+  position:absolute;left:5%;right:5%;bottom:6%;top:8%;
+  background:#FDF8F1;border-radius:8px;box-shadow:0 6px 18px rgba(78,58,56,.12);
+  transform:translateY(0);transition:transform 1.1s cubic-bezier(.4,0,.2,1) .45s;
+  z-index:1;
+}
+.env-front{
+  inset:0;top:32%;z-index:2;border-radius:0 0 10px 10px;
+  background:linear-gradient(165deg,#F2D6C9,#E3B7A8);
+}
+.env-flap{
+  left:0;right:0;top:0;height:46%;z-index:3;
+  background:linear-gradient(180deg,#E0AF9F,#D69C8C);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transform-origin:top center;
+  transition:transform .8s cubic-bezier(.5,0,.3,1),z-index 0s .8s;
+}
+.envelope.open .env-flap{transform:rotateX(178deg);z-index:0}
+.envelope.open .letter-paper{transform:translateY(-88%)}
+.env-hint{margin-top:70px;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
+.env-hint::before{content:"✉ "}
+.stamp{
+  position:absolute;top:8%;right:6%;z-index:4;width:64px;height:74px;perspective:400px;
+}
+.stamp-inner{
+  position:relative;width:100%;height:100%;transform-style:preserve-3d;
+  transition:transform .7s cubic-bezier(.4,0,.2,1);
+}
+.stamp.flipped .stamp-inner{transform:rotateY(180deg)}
+.stamp-face{
+  position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  border-radius:4px;display:grid;place-items:center;
+  background:
+    radial-gradient(circle at 4px 4px, transparent 3px, #FBF3E9 3px);
+  background-size:12px 12px;background-position:-6px -6px;
+  box-shadow:0 3px 8px rgba(78,58,56,.18);
+}
+.stamp-face.front svg{width:38px;height:38px}
+.stamp-face.back{transform:rotateY(180deg);padding:6px}
+.stamp-face.back p{font-family:var(--hand);font-size:.86rem;line-height:1.15;color:var(--rose-deep);text-align:center}
+.letter-open{
+  max-width:420px;margin:40px auto 0;text-align:left;
+  background:#FDF8F1;border-radius:14px;padding:34px 26px;box-shadow:var(--shadow);
+  opacity:0;transform:translateY(30px);transition:opacity 1s ease,transform 1s ease;
+  display:none;
+}
+.letter-open.show{display:block;opacity:1;transform:none}
+.letter-line{
+  font-family:var(--serif);font-size:1.18rem;line-height:1.75;color:var(--ink);
+  min-height:1.75em;
+}
+.letter-line.sig{font-family:var(--hand);font-size:1.5rem;color:var(--terra);margin-top:16px}
+.letter-line .caret{display:inline-block;width:1px;height:1em;background:var(--rose-deep);vertical-align:-.15em;animation:caret .8s steps(1) infinite}
+@keyframes caret{50%{opacity:0}}
+
+/* ============ FINALE ============ */
+.finale{
+  min-height:100vh;min-height:100svh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;padding:40px 26px;
+  background:linear-gradient(180deg,var(--paper) 0%,var(--paper-deep) 100%);
+}
+.closing{
+  font-family:var(--serif);font-style:italic;font-size:clamp(1.9rem,9vw,2.8rem);
+  color:var(--rose-deep);line-height:1.3;
+}
+.closing.beat{animation:heartbeat 2.2s ease-in-out infinite}
+@keyframes heartbeat{
+  0%,100%{transform:scale(1)}
+  12%{transform:scale(1.045)}
+  24%{transform:scale(1)}
+  36%{transform:scale(1.03)}
+  48%{transform:scale(1)}
+}
+.finale .names{font-family:var(--hand);font-size:1.5rem;color:var(--gold);margin-top:26px}
+.finale .fin-date{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
+.heart-rain-bit{position:fixed;top:-5%;font-size:20px;z-index:80;pointer-events:none;will-change:transform,opacity}
+.egg-toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);z-index:85;
+  background:var(--rose-deep);color:var(--paper);padding:10px 22px;border-radius:999px;
+  font-family:var(--hand);font-size:1.15rem;transition:transform .5s cubic-bezier(.3,1.5,.5,1);
+  box-shadow:var(--shadow);
+}
+.egg-toast.show{transform:translateX(-50%) translateY(0)}
+
+/* ============ GERBANG SURAT (intro gate) ============ */
+body.gated{overflow:hidden}
+.intro-gate{
+  position:fixed;inset:0;z-index:90;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:28px;padding:26px;
+  background:linear-gradient(180deg,var(--paper) 0%,var(--paper-deep) 100%);
+  transition:opacity 1.1s ease,visibility 0s linear 1.1s;
+}
+.intro-gate.away{opacity:0;visibility:hidden;pointer-events:none}
+.gate-eyebrow{font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:500;text-align:center}
+.gate-env{width:min(320px,84vw)}
+
+/* cover: a flat card split at the middle seam, no flap silhouette */
+.cover{position:relative;width:100%;aspect-ratio:32/21;cursor:pointer;perspective:1200px}
+.cover-half{
+  position:absolute;left:0;right:0;height:50%;overflow:hidden;
+  background:linear-gradient(165deg,#F2D6C9,#E3B7A8);
+  box-shadow:var(--shadow);
+}
+.cover-half.top{top:0;border-radius:10px 10px 0 0;transform-origin:top center;transition:transform .85s cubic-bezier(.5,0,.3,1) .05s,box-shadow .85s ease}
+.cover-half.bottom{bottom:0;border-radius:0 0 10px 10px;transform-origin:bottom center;transition:transform .85s cubic-bezier(.5,0,.3,1) .05s}
+.cover-seam{
+  position:absolute;left:6%;right:6%;top:50%;height:1px;z-index:2;
+  background:linear-gradient(90deg,transparent,rgba(126,59,56,.4) 18%,rgba(126,59,56,.4) 82%,transparent);
+  transition:opacity .4s ease .3s;
+}
+.cover.open .cover-half.top{transform:rotateX(28deg) translateY(-6%);box-shadow:0 -10px 22px rgba(78,58,56,.16)}
+.cover.open .cover-half.bottom{transform:rotateX(-6deg) translateY(6%)}
+.cover.open .cover-seam{opacity:0}
+.env-addr{
+  position:absolute;left:0;right:0;top:56%;z-index:3;text-align:center;
+  font-family:var(--hand);font-size:1.35rem;color:var(--rose-deep);pointer-events:none;
+}
+.wax-seal{
+  position:absolute;left:50%;top:50%;z-index:5;width:80px;height:80px;
+  transform:translate(-50%,-50%);
+  border-radius:47% 53% 50% 50% / 52% 48% 52% 48%;
+  background:radial-gradient(circle at 34% 30%, #C97B62, #9E4F46 58%, #7E3B38);
+  box-shadow:0 6px 16px rgba(126,59,56,.4),
+             inset 0 2px 5px rgba(255,235,220,.35),
+             inset 0 -4px 8px rgba(70,30,28,.45);
+  display:grid;place-items:center;color:#F3DDCE;
+  font-size:1.7rem;line-height:1;
+  transition:transform .22s ease;
+}
+.wax-seal::before{content:"";position:absolute;inset:9px;border-radius:inherit;border:1.5px solid rgba(243,221,206,.5)}
+.wax-seal::after{
+  content:"";position:absolute;inset:-9px;border-radius:inherit;
+  border:1.5px solid rgba(158,95,104,.45);
+  animation:sealRing 2.3s ease-out infinite;
+}
+@keyframes sealRing{
+  0%{transform:scale(.88);opacity:0}
+  35%{opacity:.8}
+  100%{transform:scale(1.28);opacity:0}
+}
+.wax-seal:active{transform:translate(-50%,-50%) scale(.92)}
+.wax-seal.pop{animation:sealPop .6s cubic-bezier(.4,0,.6,1) forwards}
+.wax-seal.pop::after{display:none}
+@keyframes sealPop{
+  30%{transform:translate(-50%,-50%) scale(1.18) rotate(-7deg);opacity:1}
+  100%{transform:translate(-50%,-50%) scale(0) rotate(22deg);opacity:0}
+}
+.gate-hint{
+  font-size:.74rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-soft);
+  animation:hintFade 2.4s ease-in-out infinite;
+}
+@keyframes hintFade{0%,100%{opacity:.45}50%{opacity:1}}
+
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .petals,.heart-rain-bit{display:none}
+  .reveal,.hero .eyebrow,.hero h1,.hero-date,.scroll-hint,.wish{transition:opacity .4s ease;transform:none!important}
+  .hero-florals path.draw{transition:none;stroke-dashoffset:0}
+  .hero-florals .pet{transition:none;transform:scale(1)}
+  .flame,.glow,.closing.beat,.scroll-hint::after,.sound-btn[aria-pressed="true"],.gate-hint,.wax-seal::after{animation:none}
+  .intro-gate{transition:opacity .35s ease,visibility 0s linear .35s}
+  .stem-decor .bloom-head{transition:opacity .4s ease}
+  .letter-paper,.env-flap,.stamp-inner{transition-duration:.2s}
+}
+@media (min-width:600px){
+  .scratch-grid{grid-template-columns:1fr 1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- sound toggle (opt-in) -->
+<button class="sound-btn" id="soundBtn" aria-pressed="false" aria-label="Putar musik lembut">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/>
+    <line class="off-line" x1="3" y1="3" x2="21" y2="21"/>
+  </svg>
+</button>
+
+<!-- flower-stem scroll progress -->
+<svg class="stem-progress" viewBox="0 0 30 100" preserveAspectRatio="none" aria-hidden="true">
+  <path class="stem" id="stemPath" pathLength="1" d="M15,100 C9,84 21,68 14,52 C9,38 19,22 15,7"/>
+</svg>
+<div class="stem-decor" aria-hidden="true">
+  <span class="leaf l1" id="leaf1"></span>
+  <span class="leaf l2" id="leaf2"></span>
+  <svg class="bloom-head" id="bloomHead" viewBox="0 0 30 22">
+    <ellipse cx="15" cy="6" rx="3.4" ry="5.4" fill="#C68B90"/>
+    <ellipse cx="9.5" cy="10" rx="3.4" ry="5.4" fill="#C68B90" transform="rotate(-65 9.5 10)"/>
+    <ellipse cx="20.5" cy="10" rx="3.4" ry="5.4" fill="#C68B90" transform="rotate(65 20.5 10)"/>
+    <circle cx="15" cy="10" r="2.6" fill="#C29A5B"/>
+  </svg>
+</div>
+
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+<noscript><style>
+.intro-gate{display:none}
+.hero .eyebrow,.hero h1,.hero-date,.scroll-hint,.reveal,.wish{opacity:1;transform:none}
+.hero-florals path.draw{stroke-dashoffset:0}.hero-florals .pet{transform:scale(1)}
+</style></noscript>
+
+<!-- ============ GERBANG : SURAT BERSEGEL ============ -->
+<div class="intro-gate" id="introGate">
+  <p class="gate-eyebrow">sebuah surat,<br>hanya untukmu</p>
+  <div class="cover gate-env" id="gateEnv">
+    <div class="cover-half top"></div>
+    <div class="cover-half bottom"></div>
+    <div class="cover-seam"></div>
+    <button class="wax-seal" id="waxSeal" aria-label="Tekan segel lilin untuk membuka surat">♥</button>
+  </div>
+  <p class="gate-hint">tekan segelnya</p>
+</div>
+
+<!-- ============ ACT 1 : PEMBUKA ============ -->
+<header class="act hero" id="hero">
+  <svg class="hero-florals" viewBox="0 0 390 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <!-- left sprig -->
+    <path class="draw" pathLength="1" d="M-10,70 C70,95 108,160 96,240" stroke="#B4694E" stroke-width="1.6"/>
+    <path class="draw" pathLength="1" style="transition-delay:.3s" d="M40,105 C56,92 74,90 88,98" stroke="#C68B90" stroke-width="1.3"/>
+    <path class="draw" pathLength="1" style="transition-delay:.5s" d="M70,160 C88,150 104,152 114,162" stroke="#C68B90" stroke-width="1.3"/>
+    <g class="pet" style="transition-delay:1.2s;transform-origin:96px 250px">
+      <ellipse cx="96" cy="238" rx="7" ry="12" fill="#EFD5CC" stroke="#9E5F68" stroke-width="1.2"/>
+      <ellipse cx="85" cy="247" rx="7" ry="12" fill="#EFD5CC" stroke="#9E5F68" stroke-width="1.2" transform="rotate(-62 85 247)"/>
+      <ellipse cx="107" cy="247" rx="7" ry="12" fill="#EFD5CC" stroke="#9E5F68" stroke-width="1.2" transform="rotate(62 107 247)"/>
+      <ellipse cx="89" cy="259" rx="7" ry="12" fill="#EFD5CC" stroke="#9E5F68" stroke-width="1.2" transform="rotate(-130 89 259)"/>
+      <ellipse cx="103" cy="259" rx="7" ry="12" fill="#EFD5CC" stroke="#9E5F68" stroke-width="1.2" transform="rotate(130 103 259)"/>
+      <circle cx="96" cy="250" r="4.5" fill="#C29A5B"/>
+    </g>
+    <!-- right bouquet -->
+    <path class="draw" pathLength="1" style="transition-delay:.4s" d="M400,660 C325,625 300,555 322,480" stroke="#B4694E" stroke-width="1.6"/>
+    <path class="draw" pathLength="1" style="transition-delay:.7s" d="M355,600 C338,592 326,578 326,562" stroke="#C68B90" stroke-width="1.3"/>
+    <path class="draw" pathLength="1" style="transition-delay:.9s" d="M336,530 C352,524 366,528 374,540" stroke="#C68B90" stroke-width="1.3"/>
+    <g class="pet" style="transition-delay:1.6s;transform-origin:322px 470px">
+      <ellipse cx="322" cy="458" rx="8" ry="13" fill="#EFD5CC" stroke="#9E5F68" stroke-width="1.2"/>
+      <ellipse cx="310" cy="468" rx="8" ry="13" fill="#EFD5CC" stroke="#9E5F68" stroke-width="1.2" transform="rotate(-62 310 468)"/>
+      <ellipse cx="334" cy="468" rx="8" ry="13" fill="#EFD5CC" stroke="#9E5F68" stroke-width="1.2" transform="rotate(62 334 468)"/>
+      <ellipse cx="314" cy="481" rx="8" ry="13" fill="#EFD5CC" stroke="#9E5F68" stroke-width="1.2" transform="rotate(-130 314 481)"/>
+      <ellipse cx="330" cy="481" rx="8" ry="13" fill="#EFD5CC" stroke="#9E5F68" stroke-width="1.2" transform="rotate(130 330 481)"/>
+      <circle cx="322" cy="470" r="5" fill="#C29A5B"/>
+    </g>
+  </svg>
+
+  <p class="eyebrow">untuk kamu, satu-satunya</p>
+  <h1>Erina Khalisah Nurindriyani</h1>
+  <p class="hero-date">[Jumat, 17 Juli 2026]</p>
+
+  <!-- easter egg flower: ketuk 3x -->
+  <button class="egg-flower" id="eggFlower" aria-label="Bunga kecil">
+    <svg viewBox="0 0 56 56" aria-hidden="true">
+      <path d="M28,52 C28,44 26,38 27,32" stroke="#B4694E" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <g>
+        <ellipse cx="28" cy="20" rx="5" ry="8.5" fill="#C68B90"/>
+        <ellipse cx="20" cy="26" rx="5" ry="8.5" fill="#C68B90" transform="rotate(-62 20 26)"/>
+        <ellipse cx="36" cy="26" rx="5" ry="8.5" fill="#C68B90" transform="rotate(62 36 26)"/>
+        <ellipse cx="23" cy="34" rx="5" ry="8.5" fill="#C68B90" transform="rotate(-130 23 34)"/>
+        <ellipse cx="33" cy="34" rx="5" ry="8.5" fill="#C68B90" transform="rotate(130 33 34)"/>
+        <circle cx="28" cy="27" r="3.6" fill="#C29A5B"/>
+      </g>
+    </svg>
+  </button>
+
+  <div class="scroll-hint">geser perlahan</div>
+</header>
+
+<!-- ============ ACT 2 : TIUP LILIN ============ -->
+<section class="act cake-act" id="cakeAct">
+  <p class="eyebrow reveal">bab pertama</p>
+  <h2 class="reveal d1">Tiup <em>lilinnya</em></h2>
+  <p class="lede reveal d2" style="margin:0 auto">Pejamkan matamu sebentar. Buat satu permintaan — yang paling dalam.</p>
+
+  <div class="cake-stage reveal d3" id="cakeStage">
+    <svg viewBox="0 0 320 300" aria-label="Kue ulang tahun dengan lilin">
+      <defs>
+        <linearGradient id="flameG" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F3C77B"/><stop offset="100%" stop-color="#C97B4F"/>
+        </linearGradient>
+      </defs>
+      <!-- plate -->
+      <ellipse cx="160" cy="272" rx="128" ry="15" fill="#E4C6B4" opacity=".55"/>
+      <ellipse cx="160" cy="266" rx="118" ry="14" fill="#F1E0D2"/>
+      <!-- bottom tier -->
+      <rect x="70" y="196" width="180" height="70" rx="13" fill="#E7C0AC"/>
+      <path d="M70,206 q11,14 22,0 q11,14 23,0 q11,14 22,0 q11,14 23,0 q11,14 22,0 q11,14 23,0 q11,14 23,0 q11,14 22,0 L250,196 L70,196 Z" fill="#FAF0E4"/>
+      <circle cx="98" cy="242" r="3.4" fill="#C68B90"/><circle cx="160" cy="250" r="3.4" fill="#C29A5B"/><circle cx="224" cy="240" r="3.4" fill="#C68B90"/>
+      <!-- top tier -->
+      <rect x="96" y="140" width="128" height="58" rx="11" fill="#F0D3C0"/>
+      <path d="M96,149 q10,12 20,0 q10,12 21,0 q10,12 21,0 q10,12 22,0 q10,12 22,0 q10,12 22,0 L224,140 L96,140 Z" fill="#FAF0E4"/>
+      <ellipse cx="160" cy="140" rx="64" ry="11" fill="#FBF3E9"/>
+      <!-- candles -->
+      <g id="candles">
+        <g><rect x="107" y="102" width="6" height="34" rx="3" fill="#C68B90"/><line x1="110" y1="102" x2="110" y2="97" stroke="#8B6F6B" stroke-width="1.4"/></g>
+        <g><rect x="132" y="98"  width="6" height="38" rx="3" fill="#E7C0AC"/><line x1="135" y1="98" x2="135" y2="93" stroke="#8B6F6B" stroke-width="1.4"/></g>
+        <g><rect x="157" y="94"  width="6" height="42" rx="3" fill="#C29A5B"/><line x1="160" y1="94" x2="160" y2="89" stroke="#8B6F6B" stroke-width="1.4"/></g>
+        <g><rect x="182" y="98"  width="6" height="38" rx="3" fill="#E7C0AC"/><line x1="185" y1="98" x2="185" y2="93" stroke="#8B6F6B" stroke-width="1.4"/></g>
+        <g><rect x="207" y="102" width="6" height="34" rx="3" fill="#C68B90"/><line x1="210" y1="102" x2="210" y2="97" stroke="#8B6F6B" stroke-width="1.4"/></g>
+      </g>
+      <!-- glows + flames -->
+      <g id="flames">
+        <g class="flame-unit" data-x="110"><circle class="glow" cx="110" cy="88" r="13" fill="#F3C77B" opacity=".4"/><g class="flame" style="transform-box:fill-box"><path d="M110,78 C114,84 115,90 110,94 C105,90 106,84 110,78 Z" fill="url(#flameG)"/><path d="M110,85 C112,88 112,91 110,92.6 C108,91 108,88 110,85 Z" fill="#FBF3E9"/></g></g>
+        <g class="flame-unit" data-x="135"><circle class="glow" cx="135" cy="84" r="13" fill="#F3C77B" opacity=".4"/><g class="flame" style="transform-box:fill-box"><path d="M135,74 C139,80 140,86 135,90 C130,86 131,80 135,74 Z" fill="url(#flameG)"/><path d="M135,81 C137,84 137,87 135,88.6 C133,87 133,84 135,81 Z" fill="#FBF3E9"/></g></g>
+        <g class="flame-unit" data-x="160"><circle class="glow" cx="160" cy="80" r="13" fill="#F3C77B" opacity=".4"/><g class="flame" style="transform-box:fill-box"><path d="M160,70 C164,76 165,82 160,86 C155,82 156,76 160,70 Z" fill="url(#flameG)"/><path d="M160,77 C162,80 162,83 160,84.6 C158,83 158,80 160,77 Z" fill="#FBF3E9"/></g></g>
+        <g class="flame-unit" data-x="185"><circle class="glow" cx="185" cy="84" r="13" fill="#F3C77B" opacity=".4"/><g class="flame" style="transform-box:fill-box"><path d="M185,74 C189,80 190,86 185,90 C180,86 181,80 185,74 Z" fill="url(#flameG)"/><path d="M185,81 C187,84 187,87 185,88.6 C183,87 183,84 185,81 Z" fill="#FBF3E9"/></g></g>
+        <g class="flame-unit" data-x="210"><circle class="glow" cx="210" cy="88" r="13" fill="#F3C77B" opacity=".4"/><g class="flame" style="transform-box:fill-box"><path d="M210,78 C214,84 215,90 210,94 C205,90 206,84 210,78 Z" fill="url(#flameG)"/><path d="M210,85 C212,88 212,91 210,92.6 C208,91 208,88 210,85 Z" fill="#FBF3E9"/></g></g>
+      </g>
+    </svg>
+  </div>
+  <p class="cake-hint reveal d3" id="cakeHint">sentuh &amp; tahan lilinnya — atau usap ke atas untuk meniup</p>
+
+  <div class="wish" id="wishMsg">
+    “[PESAN SETELAH LILIN — mis. Semoga semua doa yang kamu bisikkan tahun ini, pelan-pelan Allah jadikan nyata.]”
+    <small>— dariku, yang selalu mengaminkan doamu</small>
+  </div>
+</section>
+
+<!-- ============ ACT 3 : LINIMASA KENANGAN ============ -->
+<section class="act timeline-act" id="timelineAct">
+  <p class="eyebrow reveal">bab kedua</p>
+  <h2 class="reveal d1">Perjalanan <em>kita</em></h2>
+  <p class="lede reveal d2">Beberapa potongan waktu yang tidak akan pernah kuizinkan pudar.</p>
+  <div class="days-counter reveal d3">sudah <b id="daysNum">…</b> hari bersamamu ♥</div>
+
+  <div class="timeline" id="timeline">
+    <svg class="vine-svg" viewBox="0 0 28 1000" preserveAspectRatio="none" aria-hidden="true">
+      <path class="vine" id="vinePath" pathLength="1" d="M14,0 C6,90 22,170 12,260 C4,340 24,430 13,520 C5,600 23,690 12,780 C6,860 20,930 14,1000"/>
+    </svg>
+
+    <article class="memory reveal">
+      <div class="frame" style="--tilt:-1.4deg">
+        <div class="frame-img" data-p="0.055"><div style="text-align:center">
+          <svg viewBox="0 0 44 44" fill="none" stroke="#9E5F68" stroke-width="1.4"><circle cx="22" cy="17" r="6"/><path d="M22,23 C22,30 22,34 22,38 M14,29 C18,27 20,26 22,26 M30,29 C26,27 24,26 22,26"/></svg>
+          <p>[FOTO 1]</p></div></div>
+        <p class="caption"><span class="when">[TANGGAL / TAHUN]</span>[KENANGAN 1 — tempat kita pertama kali bertemu]</p>
+      </div>
+    </article>
+
+    <article class="memory reveal rv-rot">
+      <div class="frame" style="--tilt:1.6deg">
+        <div class="frame-img" data-p="-0.05"><div style="text-align:center">
+          <svg viewBox="0 0 44 44" fill="none" stroke="#9E5F68" stroke-width="1.4"><path d="M22 38 C10 30 4 22 8 14 C11 8 19 8 22 14 C25 8 33 8 36 14 C40 22 34 30 22 38 Z"/></svg>
+          <p>[FOTO 2]</p></div></div>
+        <p class="caption"><span class="when">[TANGGAL / TAHUN]</span>[KENANGAN 2 — saat aku tahu kamu orangnya]</p>
+      </div>
+    </article>
+
+    <article class="memory reveal rv-left">
+      <div class="frame" style="--tilt:-1deg">
+        <div class="frame-img" data-p="0.06"><div style="text-align:center">
+          <svg viewBox="0 0 44 44" fill="none" stroke="#9E5F68" stroke-width="1.4"><path d="M8 34 L18 20 L26 28 L32 22 L38 30"/><circle cx="14" cy="12" r="3.4"/><rect x="5" y="7" width="34" height="30" rx="3"/></svg>
+          <p>[FOTO 3]</p></div></div>
+        <p class="caption"><span class="when">[TANGGAL / TAHUN]</span>[KENANGAN 3 — perjalanan favorit kita]</p>
+      </div>
+    </article>
+
+    <article class="memory reveal rv-rot">
+      <div class="frame" style="--tilt:1.2deg">
+        <div class="frame-img" data-p="-0.055"><div style="text-align:center">
+          <svg viewBox="0 0 44 44" fill="none" stroke="#9E5F68" stroke-width="1.4"><path d="M22 6 L26 16 L37 17 L29 24 L31 35 L22 29 L13 35 L15 24 L7 17 L18 16 Z"/></svg>
+          <p>[FOTO 4]</p></div></div>
+        <p class="caption"><span class="when">[TANGGAL / TAHUN]</span>[KENANGAN 4 — hari yang mengubah segalanya]</p>
+      </div>
+    </article>
+
+    <article class="memory reveal">
+      <div class="frame" style="--tilt:-1.6deg">
+        <div class="frame-img" data-p="0.05"><div style="text-align:center">
+          <svg viewBox="0 0 44 44" fill="none" stroke="#9E5F68" stroke-width="1.4"><circle cx="17" cy="24" r="7"/><circle cx="27" cy="24" r="7"/><path d="M22 10 L22 15"/></svg>
+          <p>[FOTO 5]</p></div></div>
+        <p class="caption"><span class="when">[TANGGAL / TAHUN]</span>[KENANGAN 5 — kita, hari ini]</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ ACT 4 : GOSOK & TEMUKAN ============ -->
+<section class="act scratch-act" id="scratchAct">
+  <p class="eyebrow reveal">bab ketiga</p>
+  <h2 class="reveal d1">Gosok <em>pelan-pelan</em></h2>
+  <p class="lede reveal d2">Di balik tiap kartu, ada satu alasan aku mencintaimu. Usap dengan jarimu.</p>
+
+  <div class="scratch-grid">
+    <div class="scratch-card reveal"      tabindex="0"><div class="secret">[ALASAN 1 — caramu tertawa]</div><canvas></canvas></div>
+    <div class="scratch-card reveal d1"   tabindex="0"><div class="secret">[ALASAN 2 — kesabaranmu]</div><canvas></canvas></div>
+    <div class="scratch-card reveal"      tabindex="0"><div class="secret">[ALASAN 3 — masakanmu]</div><canvas></canvas></div>
+    <div class="scratch-card reveal d1"   tabindex="0"><div class="secret">[ALASAN 4 — doa-doamu]</div><canvas></canvas></div>
+    <div class="scratch-card reveal"      tabindex="0"><div class="secret">[ALASAN 5 — rumah terasa rumah karena kamu]</div><canvas></canvas></div>
+    <div class="scratch-card reveal d1"   tabindex="0"><div class="secret">[ALASAN 6 — semuanya, tanpa syarat]</div><canvas></canvas></div>
+  </div>
+</section>
+
+<!-- ============ ACT 5 : SURAT ============ -->
+<section class="act letter-act" id="letterAct">
+  <p class="eyebrow reveal">bab terakhir</p>
+  <h2 class="reveal d1">Satu surat, <em>untukmu</em></h2>
+  <p class="lede reveal d2" style="margin:0 auto">Kutulis pelan-pelan, seperti caraku menyayangimu.</p>
+
+  <div class="envelope-wrap reveal d3">
+    <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Buka amplop surat">
+      <div class="env-back"></div>
+      <div class="letter-paper"></div>
+      <div class="env-front"></div>
+      <div class="env-flap"></div>
+      <button class="stamp" id="stamp" aria-label="Prangko — ada rahasia kecil">
+        <div class="stamp-inner">
+          <div class="stamp-face front">
+            <svg viewBox="0 0 44 44" fill="none" stroke="#9E5F68" stroke-width="1.6"><path d="M22 36 C11 29 6 22 9.5 15 C12 10 19 10 22 15.5 C25 10 32 10 34.5 15 C38 22 33 29 22 36 Z" fill="#EFD5CC"/></svg>
+          </div>
+          <div class="stamp-face back"><p>[PESAN RAHASIA DI BALIK PRANGKO — mis. psst… cek bawah bantalmu]</p></div>
+        </div>
+      </button>
+    </div>
+    <p class="env-hint" id="envHint">ketuk amplopnya</p>
+  </div>
+
+  <div class="letter-open" id="letterOpen" aria-live="polite"></div>
+</section>
+
+<!-- ============ FINALE ============ -->
+<section class="finale" id="finale">
+  <p class="closing reveal" id="closingLine">Selamat ulang tahun,<br>cintaku.</p>
+  <p class="names reveal d1">Erina Khalisah Nurindriyani &amp; Muhammad Farhan Binashrillah</p>
+  <p class="fin-date reveal d2">Jumat, 17 · 07 · 2026</p>
+</section>
+
+<div class="egg-toast" id="eggToast">kamu menemukannya ♥</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ================= PERSONALISASI ================= */
+// Ganti tanggal ini dengan tanggal mulai hubungan / menikah (format: YYYY-MM-DD)
+var START_DATE = "[YYYY-MM-DD]"; // contoh: "2026-07-08"
+// Isi surat — tiap baris akan menulis dirinya sendiri
+var LETTER_LINES = [
+  "Sayangku, Erina Khalisah Nurindriyani,",
+  "[SURAT BARIS 1 — kenangan yang paling kamu simpan tentang dia]",
+  "[SURAT BARIS 2 — hal yang paling kamu syukuri darinya]",
+  "[SURAT BARIS 3 — janji atau harapanmu untuk tahun ini]",
+  "Terima kasih sudah menjadi rumah bagiku.",
+  "— [Muhammad Farhan Binashrillah], [17 Juli 2026]"
+];
+
+var PALETTE = ["#EFD5CC","#C68B90","#B4694E","#C29A5B","#9E5F68"];
+var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var canVibe = "vibrate" in navigator;
+
+/* ================= GERBANG SURAT: segel lilin ================= */
+document.body.classList.add("gated");
+(function(){
+  var gate = document.getElementById("introGate");
+  var env  = document.getElementById("gateEnv");
+  var seal = document.getElementById("waxSeal");
+  var opened = false;
+  function openGate(){
+    if (opened) return; opened = true;
+    // audio harus dimulai sinkron di dalam gesture (aturan iOS/Android)
+    if (window.__enableSound) window.__enableSound();
+    seal.classList.add("pop");
+    if (canVibe) navigator.vibrate([15,40,25]);
+    setTimeout(function(){ env.classList.add("open"); }, 240);
+    setTimeout(function(){
+      gate.classList.add("away");
+      document.body.classList.remove("gated");
+      document.body.classList.add("bloom");
+      setTimeout(function(){ gate.remove(); }, 1250);
+    }, reduced ? 350 : 1350);
+  }
+  seal.addEventListener("click", openGate);
+})();
+
+/* ================= PETALS ================= */
+(function petals(){
+  if (reduced) return;
+  var box = document.getElementById("petals");
+  var n = Math.min(14, Math.floor(window.innerWidth/32));
+  for (var i=0;i<n;i++){
+    var p = document.createElement("div");
+    p.className = "petal";
+    var dur = 13 + Math.random()*10;
+    p.style.left = (Math.random()*100) + "vw";
+    p.style.animationDuration = dur + "s";
+    p.style.animationDelay = (-Math.random()*dur) + "s";
+    var inner = document.createElement("i");
+    inner.style.animationDuration = (2.4 + Math.random()*2.4) + "s";
+    inner.style.opacity = (0.3 + Math.random()*0.35).toFixed(2);
+    var s = 0.7 + Math.random()*0.9;
+    inner.style.width = (14*s)+"px"; inner.style.height = (11*s)+"px";
+    p.appendChild(inner);
+    box.appendChild(p);
+  }
+})();
+
+/* ================= REVEAL (IntersectionObserver) ================= */
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, {threshold:0.18, rootMargin:"0px 0px -36px 0px"});
+  document.querySelectorAll(".reveal").forEach(function(el){ io.observe(el); });
+})();
+
+/* ================= SCROLL TICKER: stem, vine, parallax ================= */
+(function(){
+  var stem = document.getElementById("stemPath");
+  var leaf1 = document.getElementById("leaf1"), leaf2 = document.getElementById("leaf2");
+  var head = document.getElementById("bloomHead");
+  var vine = document.getElementById("vinePath");
+  var timeline = document.getElementById("timeline");
+  var pxEls = Array.prototype.slice.call(document.querySelectorAll(".frame-img[data-p]"));
+  var ticking = false;
+
+  function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
+
+  function update(){
+    ticking = false;
+    var vh = window.innerHeight;
+    var doc = document.documentElement;
+    var total = doc.scrollHeight - vh;
+    var prog = total>0 ? clamp(doc.scrollTop/total,0,1) : 0;
+
+    stem.style.strokeDashoffset = (1 - prog);
+    leaf1.classList.toggle("on", prog > 0.28);
+    leaf2.classList.toggle("on", prog > 0.55);
+    head.classList.toggle("on", prog > 0.96);
+
+    var r = timeline.getBoundingClientRect();
+    var vp = clamp((vh*0.82 - r.top) / r.height, 0, 1);
+    vine.style.strokeDashoffset = (1 - vp);
+
+    if (!reduced){
+      for (var i=0;i<pxEls.length;i++){
+        var el = pxEls[i], er = el.getBoundingClientRect();
+        var off = (er.top + er.height/2 - vh/2) * parseFloat(el.dataset.p);
+        el.style.transform = "translate3d(0," + clamp(off,-30,30).toFixed(1) + "px,0)";
+      }
+    }
+  }
+  window.addEventListener("scroll", function(){
+    if (!ticking){ ticking = true; requestAnimationFrame(update); }
+  }, {passive:true});
+  window.addEventListener("resize", update);
+  update();
+})();
+
+/* ================= HARI BERSAMA ================= */
+(function(){
+  var el = document.getElementById("daysNum");
+  var d = new Date(START_DATE);
+  if (isNaN(d.getTime())){ el.textContent = "[N]"; return; }
+  var days = Math.max(0, Math.floor((Date.now() - d.getTime())/86400000));
+  if (reduced){ el.textContent = days.toLocaleString("id-ID"); return; }
+  var t0 = null;
+  function step(t){
+    if (!t0) t0 = t;
+    var k = Math.min(1,(t-t0)/1400);
+    el.textContent = Math.floor(days * (1-Math.pow(1-k,3))).toLocaleString("id-ID");
+    if (k<1) requestAnimationFrame(step); else el.textContent = days.toLocaleString("id-ID");
+  }
+  new IntersectionObserver(function(es,ob){
+    if (es[0].isIntersecting){ requestAnimationFrame(step); ob.disconnect(); }
+  },{threshold:0.6}).observe(el);
+})();
+
+/* ================= ACT 2: LILIN ================= */
+(function(){
+  var stage = document.getElementById("cakeStage");
+  var units = Array.prototype.slice.call(stage.querySelectorAll(".flame-unit"));
+  var hint = document.getElementById("cakeHint");
+  var wish = document.getElementById("wishMsg");
+  var alive = units.slice();
+  var holdTimer = null, done = false;
+  var startY = null;
+
+  function stagePos(dataX){ // posisi flame relatif thd stage (viewBox 320 lebar)
+    var w = stage.clientWidth;
+    return { x: (dataX/320)*w, y: (82/300)*stage.clientHeight };
+  }
+  function spawnSmoke(u){
+    var p = stagePos(+u.dataset.x);
+    for (var i=0;i<3;i++){
+      var s = document.createElement("div");
+      s.className = "smoke";
+      s.style.left = (p.x - 4 + (i-1)*4) + "px";
+      s.style.top = (p.y - 10) + "px";
+      s.style.animationDelay = (i*0.22)+"s";
+      stage.appendChild(s);
+      setTimeout(function(el){ return function(){ el.remove(); }; }(s), 3200);
+    }
+  }
+  function blowOne(){
+    if (!alive.length) return;
+    var u = alive.shift();
+    u.querySelector(".flame").classList.add("out");
+    var g = u.querySelector(".glow"); if (g) g.style.opacity = 0;
+    spawnSmoke(u);
+    if (canVibe) navigator.vibrate(15);
+    if (!alive.length) allOut();
+  }
+  function blowAll(){
+    alive.slice().forEach(function(_,i){ setTimeout(blowOne, i*130); });
+  }
+  function confetti(){
+    if (reduced) return;
+    var w = stage.clientWidth, h = stage.clientHeight;
+    for (var i=0;i<38;i++){
+      var b = document.createElement("div");
+      b.className = "confetti-bit";
+      b.style.background = PALETTE[i % PALETTE.length];
+      b.style.left = (w/2) + "px"; b.style.top = (h*0.35) + "px";
+      stage.appendChild(b);
+      var ang = Math.random()*Math.PI*2, dist = 60 + Math.random()*130;
+      b.animate([
+        {transform:"translate(0,0) rotate(0deg)", opacity:1},
+        {transform:"translate(" + Math.cos(ang)*dist + "px," + (Math.sin(ang)*dist*0.6 + 90) + "px) rotate(" + (Math.random()*540-270) + "deg)", opacity:0}
+      ], {duration:1400+Math.random()*900, easing:"cubic-bezier(.2,.7,.3,1)", fill:"forwards"});
+      setTimeout(function(el){ return function(){ el.remove(); }; }(b), 2600);
+    }
+  }
+  function allOut(){
+    if (done) return; done = true;
+    hint.style.opacity = 0;
+    if (canVibe) navigator.vibrate([30,60,30]);
+    setTimeout(confetti, 300);
+    setTimeout(function(){ wish.classList.add("lit"); }, 700);
+  }
+
+  stage.addEventListener("pointerdown", function(e){
+    startY = e.clientY;
+    blowOne();
+    holdTimer = setInterval(blowOne, 480);
+  });
+  function stopHold(){ clearInterval(holdTimer); holdTimer = null; startY = null; }
+  stage.addEventListener("pointerup", stopHold);
+  stage.addEventListener("pointercancel", stopHold);
+  stage.addEventListener("pointerleave", stopHold);
+  stage.addEventListener("pointermove", function(e){
+    if (startY !== null && (startY - e.clientY) > 46){ // usap ke atas = satu hembusan
+      stopHold(); blowAll();
+    }
+  });
+  stage.addEventListener("keydown", function(e){
+    if (e.key === "Enter" || e.key === " "){ e.preventDefault(); blowOne(); }
+  });
+  stage.tabIndex = 0;
+  stage.setAttribute("role","button");
+  stage.setAttribute("aria-label","Tiup lilin — tekan Enter");
+})();
+
+/* ================= ACT 4: KARTU GOSOK ================= */
+(function(){
+  var DPR = Math.min(2, window.devicePixelRatio || 1);
+  document.querySelectorAll(".scratch-card").forEach(function(card){
+    var cv = card.querySelector("canvas");
+    var ctx = cv.getContext("2d");
+    var painted = false, cleared = false, strokes = 0;
+
+    function paint(){
+      var w = card.clientWidth, h = card.clientHeight;
+      if (!w || !h) return;
+      cv.width = w*DPR; cv.height = h*DPR;
+      ctx.setTransform(DPR,0,0,DPR,0,0);
+      var g = ctx.createLinearGradient(0,0,w,h);
+      g.addColorStop(0,"#D8A7A5"); g.addColorStop(.55,"#C68B90"); g.addColorStop(1,"#B07377");
+      ctx.fillStyle = g; ctx.fillRect(0,0,w,h);
+      for (var i=0;i<26;i++){ // kilau emas
+        ctx.fillStyle = "rgba(194,154,91," + (0.15+Math.random()*0.3) + ")";
+        ctx.beginPath();
+        ctx.arc(Math.random()*w, Math.random()*h, 1+Math.random()*2.2, 0, 7);
+        ctx.fill();
+      }
+      ctx.fillStyle = "rgba(249,240,231,.9)";
+      ctx.font = '500 15px Karla, sans-serif';
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText("✦ gosok aku ✦", w/2, h/2);
+      painted = true;
+    }
+    new IntersectionObserver(function(es,ob){
+      if (es[0].isIntersecting){ paint(); ob.disconnect(); }
+    },{threshold:0.1}).observe(card);
+
+    function scratch(x,y){
+      var r = cv.getBoundingClientRect();
+      ctx.globalCompositeOperation = "destination-out";
+      ctx.beginPath();
+      ctx.arc(x - r.left, y - r.top, 17, 0, 7);
+      ctx.fill();
+      if (++strokes % 9 === 0) check();
+    }
+    function check(){
+      var w = cv.width, h = cv.height;
+      var data = ctx.getImageData(0,0,w,h).data;
+      var clear = 0, total = 0;
+      for (var i=3;i<data.length;i+=4*16){ total++; if (data[i]===0) clear++; }
+      if (clear/total > 0.55) complete();
+    }
+    function sparkles(){
+      if (reduced) return;
+      for (var i=0;i<8;i++){
+        var s = document.createElement("div");
+        s.className = "sparkle";
+        s.style.left = (10+Math.random()*80)+"%";
+        s.style.top = (10+Math.random()*80)+"%";
+        card.appendChild(s);
+        s.animate([
+          {transform:"scale(0) rotate(0deg)",opacity:1},
+          {transform:"scale(1.4) rotate(160deg)",opacity:0}
+        ],{duration:700+Math.random()*400, easing:"ease-out", fill:"forwards", delay:Math.random()*250});
+        setTimeout(function(el){return function(){el.remove();};}(s), 1600);
+      }
+    }
+    function complete(){
+      if (cleared) return; cleared = true;
+      card.classList.add("done");
+      sparkles();
+      if (canVibe) navigator.vibrate(20);
+    }
+
+    var down = false;
+    cv.addEventListener("pointerdown", function(e){ down = true; cv.setPointerCapture(e.pointerId); scratch(e.clientX,e.clientY); });
+    cv.addEventListener("pointermove", function(e){ if (down && painted && !cleared) scratch(e.clientX,e.clientY); });
+    cv.addEventListener("pointerup", function(){ down = false; if (painted && !cleared) check(); });
+    card.addEventListener("keydown", function(e){
+      if (e.key === "Enter" || e.key === " "){ e.preventDefault(); complete(); }
+    });
+  });
+})();
+
+/* ================= ACT 5: AMPLOP + SURAT ================= */
+(function(){
+  var env = document.getElementById("envelope");
+  var hintEl = document.getElementById("envHint");
+  var box = document.getElementById("letterOpen");
+  var opened = false;
+
+  function typeLines(){
+    box.classList.add("show");
+    var li = 0;
+    function nextLine(){
+      if (li >= LETTER_LINES.length) return;
+      var p = document.createElement("p");
+      p.className = "letter-line" + (li === LETTER_LINES.length-1 ? " sig" : "");
+      box.appendChild(p);
+      var text = LETTER_LINES[li];
+      if (reduced){ p.textContent = text; li++; setTimeout(nextLine, 60); return; }
+      var caret = document.createElement("span"); caret.className = "caret";
+      p.appendChild(caret);
+      var ci = 0;
+      (function tick(){
+        if (ci < text.length){
+          caret.before(document.createTextNode(text[ci++]));
+          setTimeout(tick, 26 + Math.random()*30);
+        } else {
+          caret.remove(); li++;
+          setTimeout(nextLine, 420);
+        }
+      })();
+    }
+    nextLine();
+  }
+  function open(){
+    if (opened) return; opened = true;
+    env.classList.add("open");
+    hintEl.style.opacity = 0;
+    if (canVibe) navigator.vibrate(25);
+    setTimeout(typeLines, reduced ? 250 : 1500);
+  }
+  env.addEventListener("click", function(e){
+    if (e.target.closest(".stamp")) return; // prangko punya rahasianya sendiri
+    open();
+  });
+  env.addEventListener("keydown", function(e){
+    if (e.key === "Enter" || e.key === " "){ e.preventDefault(); open(); }
+  });
+
+  // rahasia kecil #2: prangko bisa dibalik
+  var stamp = document.getElementById("stamp");
+  stamp.addEventListener("click", function(e){
+    e.stopPropagation();
+    stamp.classList.toggle("flipped");
+    if (canVibe) navigator.vibrate(12);
+  });
+})();
+
+/* ================= FINALE: detak jantung ================= */
+new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    document.getElementById("closingLine").classList.toggle("beat", e.isIntersecting && !reduced);
+  });
+},{threshold:0.5}).observe(document.getElementById("finale"));
+
+/* ================= EASTER EGG: ketuk bunga 3x ================= */
+(function(){
+  var flower = document.getElementById("eggFlower");
+  var toast = document.getElementById("eggToast");
+  var taps = 0, timer = null;
+  function rainHearts(){
+    toast.classList.add("show");
+    setTimeout(function(){ toast.classList.remove("show"); }, 2600);
+    if (canVibe) navigator.vibrate([20,50,20,50,40]);
+    if (reduced) return;
+    var glyphs = ["♥","❤","♡"];
+    for (var i=0;i<26;i++){
+      var h = document.createElement("div");
+      h.className = "heart-rain-bit";
+      h.textContent = glyphs[i%3];
+      h.style.left = (Math.random()*96)+"vw";
+      h.style.color = PALETTE[i%PALETTE.length];
+      h.style.fontSize = (14+Math.random()*16)+"px";
+      document.body.appendChild(h);
+      h.animate([
+        {transform:"translateY(0) rotate(0deg)",opacity:0},
+        {opacity:1, offset:0.12},
+        {transform:"translateY(105vh) rotate(" + (Math.random()*140-70) + "deg)",opacity:.6}
+      ],{duration:3200+Math.random()*2600, delay:Math.random()*900, easing:"cubic-bezier(.3,.1,.6,1)", fill:"forwards"});
+      setTimeout(function(el){return function(){el.remove();};}(h), 7200);
+    }
+  }
+  flower.addEventListener("click", function(){
+    taps++;
+    clearTimeout(timer);
+    timer = setTimeout(function(){ taps = 0; }, 1600);
+    if (taps >= 3){ taps = 0; rainHearts(); }
+  });
+})();
+
+/* ================= MUSIK LEMBUT (opt-in, WebAudio) ================= */
+(function(){
+  var btn = document.getElementById("soundBtn");
+  var ctx = null, master = null, nodes = [], plucker = null;
+
+  function start(){
+    ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+    ctx.resume();
+    master = ctx.createGain();
+    master.gain.setValueAtTime(0.0001, ctx.currentTime);
+    master.gain.exponentialRampToValueAtTime(0.055, ctx.currentTime + 3);
+    master.connect(ctx.destination);
+
+    // pad hangat: akor F mayor 7
+    [87.31, 130.81, 220.0, 329.63].forEach(function(f, i){
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = "triangle"; o.frequency.value = f;
+      o.detune.value = (i%2 ? 4 : -4);
+      g.gain.value = 0.25;
+      o.connect(g); g.connect(master); o.start();
+      nodes.push(o,g);
+    });
+    // nafas pelan pada volume
+    var lfo = ctx.createOscillator(), lg = ctx.createGain();
+    lfo.frequency.value = 0.07; lg.gain.value = 0.018;
+    lfo.connect(lg); lg.connect(master.gain); lfo.start();
+    nodes.push(lfo,lg);
+
+    // kotak musik: petikan lembut sesekali
+    var notes = [440, 523.25, 587.33, 659.25, 698.46];
+    plucker = setInterval(function(){
+      if (!ctx) return;
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = "sine";
+      o.frequency.value = notes[Math.floor(Math.random()*notes.length)];
+      var t = ctx.currentTime;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.05, t+0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t+1.6);
+      o.connect(g); g.connect(ctx.destination);
+      o.start(t); o.stop(t+1.7);
+    }, 4200 + Math.random()*2500);
+  }
+  function stop(){
+    clearInterval(plucker); plucker = null;
+    if (master){
+      master.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.8);
+      setTimeout(function(){
+        nodes.forEach(function(n){ try{ n.stop ? n.stop() : n.disconnect(); }catch(e){} });
+        nodes = []; master = null;
+      }, 900);
+    }
+  }
+  btn.addEventListener("click", function(){
+    var on = btn.getAttribute("aria-pressed") === "true";
+    btn.setAttribute("aria-pressed", String(!on));
+    btn.setAttribute("aria-label", on ? "Putar musik lembut" : "Hentikan musik");
+    if (on) stop(); else start();
+  });
+  // dipanggil oleh segel lilin — menyalakan toggle + musik dalam satu gesture
+  window.__enableSound = function(){
+    if (btn.getAttribute("aria-pressed") !== "true"){
+      btn.setAttribute("aria-pressed","true");
+      btn.setAttribute("aria-label","Hentikan musik");
+      try { start(); } catch(e) {}
+    }
+  };
+})();
+
+})();
+</script>
+</body>
+</html>
