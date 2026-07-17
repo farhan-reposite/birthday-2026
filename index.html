@@ -111,11 +111,11 @@ h2 em{font-style:italic;color:var(--rose-deep)}
   justify-content:center;align-items:center;text-align:center;padding-top:80px;
 }
 .hero-lily{
-  position:absolute;bottom:0;width:min(220px,42vw);height:auto;pointer-events:none;
+  position:absolute;bottom:0;width:min(440px,78vw);height:auto;pointer-events:none;
   opacity:0;transition:opacity 1.6s ease .3s,transform 1.6s cubic-bezier(.3,1,.4,1) .3s;
 }
-.hero-lily-left{left:0;transform:translate(-14%,10%)}
-.hero-lily-right{right:0;transform:translate(14%,10%)}
+.hero-lily-left{left:0;transform:translate(-18%,10%)}
+.hero-lily-right{right:0;transform:translate(18%,10%)}
 body.bloom .hero-lily{opacity:1;transform:none}
 .hero .eyebrow{opacity:0;transform:translateY(14px);transition:all 1s ease .4s}
 .hero h1{
@@ -140,8 +140,6 @@ body.bloom .scroll-hint{opacity:.85}
   animation:hintDrop 2.2s ease-in-out infinite;transform-origin:top;
 }
 @keyframes hintDrop{0%,100%{transform:scaleY(.4);opacity:.4}50%{transform:scaleY(1);opacity:1}}
-.egg-flower{position:absolute;bottom:12%;left:8%;z-index:2;width:56px;height:56px;pointer-events:auto;transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
-.egg-flower:active{transform:scale(1.2) rotate(8deg)}
 
 /* ============ REVEAL SYSTEM ============ */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .95s ease,transform .95s cubic-bezier(.22,.8,.3,1)}
@@ -328,13 +326,6 @@ body.bloom .scroll-hint{opacity:.85}
 .finale .names{font-family:var(--hand);font-size:1.5rem;color:var(--gold);margin-top:26px}
 .finale .fin-date{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);margin-top:10px}
 .heart-rain-bit{position:fixed;top:-5%;font-size:20px;z-index:80;pointer-events:none;will-change:transform,opacity}
-.egg-toast{
-  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);z-index:85;
-  background:var(--rose-deep);color:var(--paper);padding:10px 22px;border-radius:999px;
-  font-family:var(--hand);font-size:1.15rem;transition:transform .5s cubic-bezier(.3,1.5,.5,1);
-  box-shadow:var(--shadow);
-}
-.egg-toast.show{transform:translateX(-50%) translateY(0)}
 
 /* ============ GERBANG SURAT (intro gate) ============ */
 body.gated{overflow:hidden}
@@ -475,23 +466,7 @@ body.gated{overflow:hidden}
   <h1>Erina Khalisah Nurindriyani</h1>
   <p class="hero-date">Jumat, 17 Juli 2026</p>
 
-  <!-- easter egg flower: ketuk 3x -->
-  <button class="egg-flower" id="eggFlower" aria-label="Bunga kecil">
-    <svg viewBox="0 0 56 56" aria-hidden="true">
-      <path d="M28,52 C28,44 26,38 27,32" stroke="#7C8A4C" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-      <g>
-        <ellipse cx="28" cy="20" rx="5" ry="8.5" fill="#8FA680"/>
-        <ellipse cx="20" cy="26" rx="5" ry="8.5" fill="#8FA680" transform="rotate(-62 20 26)"/>
-        <ellipse cx="36" cy="26" rx="5" ry="8.5" fill="#8FA680" transform="rotate(62 36 26)"/>
-        <ellipse cx="23" cy="34" rx="5" ry="8.5" fill="#8FA680" transform="rotate(-130 23 34)"/>
-        <ellipse cx="33" cy="34" rx="5" ry="8.5" fill="#8FA680" transform="rotate(130 33 34)"/>
-        <circle cx="28" cy="27" r="3.6" fill="#B99B5B"/>
-      </g>
-    </svg>
-  </button>
-
-  <div class="scroll-hint">geser perlahan</div>
-</header>
+ </header>
 
 <!-- ============ ACT 2 : TIUP LILIN ============ -->
 <section class="act cake-act" id="cakeAct">
@@ -648,7 +623,6 @@ body.gated{overflow:hidden}
   <p class="fin-date reveal d2">Jumat, 17 · 07 · 2026</p>
 </section>
 
-<div class="egg-toast" id="eggToast">kamu menemukannya ♥</div>
 
 <script>
 (function(){
@@ -845,11 +819,32 @@ document.body.classList.add("gated");
       setTimeout(function(el){ return function(){ el.remove(); }; }(b), 2600);
     }
   }
+  function rainHearts(){
+    if (canVibe) navigator.vibrate([20,50,20,50,40]);
+    if (reduced) return;
+    var glyphs = ["♥","❤","♡"];
+    for (var i=0;i<26;i++){
+      var h = document.createElement("div");
+      h.className = "heart-rain-bit";
+      h.textContent = glyphs[i%3];
+      h.style.left = (Math.random()*96)+"vw";
+      h.style.color = PALETTE[i%PALETTE.length];
+      h.style.fontSize = (14+Math.random()*16)+"px";
+      document.body.appendChild(h);
+      h.animate([
+        {transform:"translateY(0) rotate(0deg)",opacity:0},
+        {opacity:1, offset:0.12},
+        {transform:"translateY(105vh) rotate(" + (Math.random()*140-70) + "deg)",opacity:.6}
+      ],{duration:3200+Math.random()*2600, delay:Math.random()*900, easing:"cubic-bezier(.3,.1,.6,1)", fill:"forwards"});
+      setTimeout(function(el){return function(){el.remove();};}(h), 7200);
+    }
+  }
   function allOut(){
     if (done) return; done = true;
     hint.style.opacity = 0;
     if (canVibe) navigator.vibrate([30,60,30]);
     setTimeout(confetti, 300);
+    setTimeout(rainHearts, 300);
     setTimeout(function(){ wish.classList.add("lit"); }, 700);
   }
 
@@ -1016,41 +1011,6 @@ new IntersectionObserver(function(es){
     document.getElementById("closingLine").classList.toggle("beat", e.isIntersecting && !reduced);
   });
 },{threshold:0.5}).observe(document.getElementById("finale"));
-
-/* ================= EASTER EGG: ketuk bunga 3x ================= */
-(function(){
-  var flower = document.getElementById("eggFlower");
-  var toast = document.getElementById("eggToast");
-  var taps = 0, timer = null;
-  function rainHearts(){
-    toast.classList.add("show");
-    setTimeout(function(){ toast.classList.remove("show"); }, 2600);
-    if (canVibe) navigator.vibrate([20,50,20,50,40]);
-    if (reduced) return;
-    var glyphs = ["♥","❤","♡"];
-    for (var i=0;i<26;i++){
-      var h = document.createElement("div");
-      h.className = "heart-rain-bit";
-      h.textContent = glyphs[i%3];
-      h.style.left = (Math.random()*96)+"vw";
-      h.style.color = PALETTE[i%PALETTE.length];
-      h.style.fontSize = (14+Math.random()*16)+"px";
-      document.body.appendChild(h);
-      h.animate([
-        {transform:"translateY(0) rotate(0deg)",opacity:0},
-        {opacity:1, offset:0.12},
-        {transform:"translateY(105vh) rotate(" + (Math.random()*140-70) + "deg)",opacity:.6}
-      ],{duration:3200+Math.random()*2600, delay:Math.random()*900, easing:"cubic-bezier(.3,.1,.6,1)", fill:"forwards"});
-      setTimeout(function(el){return function(){el.remove();};}(h), 7200);
-    }
-  }
-  flower.addEventListener("click", function(){
-    taps++;
-    clearTimeout(timer);
-    timer = setTimeout(function(){ taps = 0; }, 1600);
-    if (taps >= 3){ taps = 0; rainHearts(); }
-  });
-})();
 
 /* ================= MUSIK LEMBUT (opt-in, file MP3) ================= */
 (function(){
